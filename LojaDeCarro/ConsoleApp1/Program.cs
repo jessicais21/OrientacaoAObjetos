@@ -137,7 +137,7 @@ namespace ConsoleApp1
             Console.Write("marca: ");
             string marca = Console.ReadLine();
 
-            var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarca(marca);
+            var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(marca);
 
             foreach (var listarCarros in resultadoDaBuscaPelaMarca)
             {
@@ -157,7 +157,7 @@ namespace ConsoleApp1
             Console.Write("modelo: ");
             string modelo = Console.ReadLine();
 
-            var resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModelo(modelo);
+            var resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modelo);
 
            
             foreach (var listarCarros in resultadoDaBuscaPeloModelo)
@@ -178,7 +178,7 @@ namespace ConsoleApp1
             Console.Write("cor: ");
             string cor = Console.ReadLine();
 
-            var resultadoDaBuscaPelaCor = estoque.PesquisarPelaCor(cor);
+            var resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(cor);
 
             foreach (var listarCarros in resultadoDaBuscaPelaCor)
             {
@@ -242,7 +242,7 @@ namespace ConsoleApp1
             {
                 DateTime localDate = DateTime.Now;
                 Console.WriteLine("data e hora da venda: " + localDate);
-                estoque.AtualizarNaListaDeCarros(carro);
+                estoque.RemoverCarros(carro);
                 int identificador = controleDeVendas.GerarIdentificadorDaVenda();
                 Venda venda = new Venda(identificador, localDate, vendedor, cliente, carro);
                 controleDeVendas.AdicionarElementosNaListaDeVendas(venda);
@@ -284,7 +284,7 @@ namespace ConsoleApp1
             if (verificarDadosDeCancelamento)
             {
                 controleDeVendas.EfetuarOCancelamentoDeVenda(cliente, carro);
-                estoque.AdicionarCarrosNoEstoque(carro);
+                estoque.AdicionarCarros(carro);
                 Console.WriteLine("cancelamento efetuado com sucesso");
             }
 
