@@ -1,7 +1,7 @@
 ﻿
 namespace Cappta.LojaDeCarro.Pessoas
 {
-    public class Cliente : IPessoa
+    public class Cliente
     {
         public string rg { get; set; }
         public string nome { get; set; }

@@ -1,7 +1,7 @@
 ﻿
 namespace Cappta.LojaDeCarro.Pessoas
 {
-  public class Vendedor : IPessoa
+  public class Vendedor 
     {
 
         public string nome { get; set; }
