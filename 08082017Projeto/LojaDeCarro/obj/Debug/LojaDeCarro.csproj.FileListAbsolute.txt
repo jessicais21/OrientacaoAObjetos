@@ -1,0 +1,12 @@
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\LojaDeCarro.exe.config
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\LojaDeCarro.exe
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\LojaDeCarro.pdb
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.csprojResolveAssemblyReference.cache
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.Properties.Resources.resources
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.csproj.GenerateResource.Cache
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.exe
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.pdb
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\obj\Debug\LojaDeCarro.Form1.resources
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\ConsoleApp1.exe
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\ConsoleApp1.pdb
+C:\Users\jessica.isis\documents\visual studio 2017\02082017ExercicioListaParte2\ConsoleApp1\LojaDeCarro\bin\Debug\ConsoleApp1.exe.config

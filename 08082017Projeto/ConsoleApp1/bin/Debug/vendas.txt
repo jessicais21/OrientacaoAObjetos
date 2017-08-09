@@ -1,0 +1,7 @@
+2,07/08/2017 18:27:21,vendedor,123,nome,80,Ford,Fiesta,preto,2000,3200
+4,07/08/2017 20:00:06,nome,323,nome,10,Fiat,Uno,azul,2012,3500
+5,07/08/2017 21:24:50,vendedor,34,nome,33,marca,modelo,verda,3333,333
+9,08/08/2017 10:44:12,vendedor,1234,urso,100,Fiat,Palio,preto,2013,1000
+10,08/08/2017 12:08:55,testeForm,123,cliente,11,Fiat,Uno,azul,2012,3500
+13,08/08/2017 15:45:23,nome,123,nome,68,Fiat,Uno,azul,2012,3500
+14,08/08/2017 17:31:22,nome,1233,nome,111,Fiat,Uno,azul,2012,3500
