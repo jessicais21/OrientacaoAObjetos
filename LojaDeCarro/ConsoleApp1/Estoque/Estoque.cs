@@ -8,17 +8,16 @@ using System.Linq;
 namespace Cappta.LojaDeCarro.Estoque
 {
 
-    //É o controle de produtos, no caso da concessionária é o gerenciamento de carros
+    //É o controle de produtos, no caso da concessionária é o controle de carros
     //O controle de carros é responsável por adicionar e remover carros do estoque
     //Para a alteração dos carros no estoque no sistema é utilizado o arquivo 
     public class Estoque
     {
-        //cria uma lista de objeto carro
-        //utilizando a propriedade get e set
-        //somente permite a escrita da lista na própria classe estoque - atributo set
-        //permite que a lista seja visualizada pela classe na classe de usuário
-        public List<Carro> listaDeCarro { get; private set; } = new List<Carro>();
-      
+        //cria uma lista de objeto do carro
+        //utilizando a propriedade get e set - porque estou alterando a lista de objetos do Carro durante a classe 
+        //permite que a lista de carros seja visualizada no Form
+        public List<Carro> listaDeCarro { get; set; } = new List<Carro>();
+
         //private para ser visualizado somente nessa classe porque eu não quero permitir que as outras classes visualize este atributo
         //representa o local de armazenamento do carro no sistema
         private string arquivoDoEstoque = "carro.txt";
@@ -58,7 +57,7 @@ namespace Cappta.LojaDeCarro.Estoque
                     var valor = Convert.ToDouble(quebra[5]);
 
                     //cria o objeto carro com as características
-                    Carro carro = new Carro(identificador, marca, modelo, cor,ano, valor);
+                    Carro carro = new Carro(identificador, marca, modelo, cor, ano, valor);
                     // armazena o objeto carro na lista de objeto carro
                     listaDeCarro.Add(carro);
                 }
@@ -77,17 +76,11 @@ namespace Cappta.LojaDeCarro.Estoque
                 //escreve cada elemento da lista de carros no arquivo 
                 foreach (var listarCarros in this.listaDeCarro)
                 {
-                    arquivo.WriteLine(listarCarros.chassi + "," + listarCarros.marca + "," + listarCarros.modelo + ","+listarCarros.cor+"," + listarCarros.ano + "," + listarCarros.valor);
+                    arquivo.WriteLine(listarCarros.chassi + "," + listarCarros.marca + "," + listarCarros.modelo + "," + listarCarros.cor + "," + listarCarros.ano + "," + listarCarros.valor);
                 }
             }
         }
 
-        //retorna todos os carro para o usuário
-        //esta função retorna todos os elementos da lista de carros, sem critério de busca
-        public List<Carro> PegarListaDeCarro()
-        {
-            return listaDeCarro;
-        }
 
         //função que adiciona os carros no estoque
         public void AdicionarCarros(Carro carro)
@@ -110,7 +103,7 @@ namespace Cappta.LojaDeCarro.Estoque
         }
 
 
-        //verifica se as informações do objeto carro inseridas pelo usuário está existe no sistema 
+        //verifica se as informações do objeto carro inseridas pelo vendedor está existe no sistema 
         //retorna se é valida ou não as informações do objeto carro
         public bool VerificarAsInformaçoesDoCarro(Carro carro)
         {
@@ -123,7 +116,7 @@ namespace Cappta.LojaDeCarro.Estoque
             return verificarCarro;
         }
 
-        //remove carros
+        //remove carros do estoque
         public void RemoverCarros(Carro carro)
         {
             //retorna o primeiro elemento encontrado correspondente ao objeto carro.
@@ -140,40 +133,40 @@ namespace Cappta.LojaDeCarro.Estoque
 
         }
 
-        //faz a busca no estoque de carros de acordo com a marca que foi inputada pelo usuário 
+        //faz a busca no estoque de carros de acordo com a marca que foi inputada pelo vendedor 
         public List<Carro> PesquisarPelaMarcaDeCarros(string marca)
         {
-            //procura no estoque os carros que possui o critério de busca inputada pelo usuário
+            //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todas as marcas de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
-            // de acordo com o critério de busca recebido do objeto carro
+            // de acordo com o critério de busca recebido da marca do carro
             List<Carro> listaDeCarroDaBuscaPorMarca = listaDeCarro.FindAll(carro => carro.marca.Equals(marca));
 
             return listaDeCarroDaBuscaPorMarca;
         }
 
-        //faz a busca no estoque de carros de acordo com o modelo que foi inputado pelo usuário
+        //faz a busca no estoque de carros de acordo com o modelo que foi inputado pelo vendedor 
         public List<Carro> PesquisarPeloModeloDeCarros(string modelo)
         {
-            //procura no estoque os carros que possui o critério de busca inputada pelo usuário
+            //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todos os modelos de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
-            // de acordo com o critério de busca recebido do objeto carro
+            // de acordo com o critério de busca recebido do modelo do carro
             List<Carro> listaDeCarroDaBuscaPorModelo = listaDeCarro.FindAll(carro => carro.modelo.Equals(modelo));
 
             return listaDeCarroDaBuscaPorModelo;
         }
 
-        //faz a busca no estoque de carros de acordo com a cor que foi inputado pelo usuário
+        //faz a busca no estoque de carros de acordo com a cor que foi inputado pelo vendedor 
         public List<Carro> PesquisarPelaCorDeCarros(string cor)
         {
-            //procura no estoque os carros que possui o critério de busca inputada pelo usuário
+            //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todas as cores de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
-            // de acordo com o critério de busca recebido do objeto carro
+            // de acordo com o critério de busca recebido da cor de carros
             List<Carro> listaDeCarroPelaCor = listaDeCarro.FindAll(carro => carro.cor.Equals(cor));
 
             return listaDeCarroPelaCor;

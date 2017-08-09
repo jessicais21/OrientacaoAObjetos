@@ -1,43 +1,144 @@
 ﻿//coleção de um mesmo tipo de dado
 using System.Collections.Generic;
+//utiliza as classes pertencentes ao namespace Cappta.LojaDeCarro.Pessoas
 using Cappta.LojaDeCarro.Pessoas;
+//utiliza as classes pertencentes ao namespace Cappta.LojaDeCarro.Estoque
 using Cappta.LojaDeCarro.Estoque;
+//responsável pela utilização das funções do LINQ
 using System.Linq;
-
+using System.IO;
+using System;
 
 namespace Cappta.LojaDeCarro.Venda
 {
+
+    //É o controle de vendas, no caso da concessionária é o controle de vendas
+    //O controle de vendas é responsável por adicionar e cancelar vendas
+    //Para efetuar as operações de adicionar e cancelar venda no sistema é utilizado o arquivo 
     public class ControleDeVendas
     {
-        BancoDeVendas bancoDeVendas = new BancoDeVendas();
+        //cria uma lista de objeto venda
+        //utilizando a propriedade get e set - porque estou alterando a lista de objetos de Venda durante a classe 
+        //permite que a lista de vendas seja visualizada no Form
+        public List<Venda> listaDeVenda { get; set; } = new List<Venda>();
 
-        public List<Venda> PegarListaDeVenda()
-        {
-            return bancoDeVendas.listaDeVenda;
+        //private para ser visualizado somente nessa classe porque eu não quero permitir que as outras classes visualize este atributo
+        //representa o local de armazenamento da venda no sistema
+        private string arquivoDeVendas = "vendas.txt";
+
+        //construtor vazio da classe Venda, ele é chamado quando é criado o objeto Venda
+        // o construtor chama a função PreencherListaDeVendas
+        public ControleDeVendas()
+        {//a função é responsável por preencher a lista de vendas
+            PreencherListaDeVendas();
         }
 
-
-        public void AdicionarElementosNaListaDeVendas(Venda venda)
+        //é responsável por preencher a lista de vendas
+        //pega os dados que estão armazenados no arquivo e preenche na lista de vendas
+        public void PreencherListaDeVendas()
         {
-            bancoDeVendas.listaDeVenda.Add(venda);
-            bancoDeVendas.Atualizar();
+            //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
+            using (var arquivo = new StreamReader(arquivoDeVendas))
+            {
+                string line;
+
+                //ler até o final da linha no arquivo
+                while ((line = arquivo.ReadLine()) != null)
+                {
+                    //verifica se a string é nula ou vazia, sai da função
+                    if (string.IsNullOrEmpty(line))
+                    {
+                        //finaliza a execução do método 
+                        return;
+                    }
+
+                    string[] quebra = line.Split(',');
+
+                    var identificadorDaVenda = Int32.Parse(quebra[0]);
+                    var dataDaVenda = Convert.ToDateTime(quebra[1]);
+
+                    var nomeDoVendedor = quebra[2];
+
+                    var rg = quebra[3];
+                    var nomeDoCliente = quebra[4];
+
+                    var chassi = quebra[5];
+                    var marcaDoCarro = quebra[6];
+                    var modeloDoCarro = quebra[7];
+                    var cor = quebra[8];
+                    var anoDoCarro = Int32.Parse(quebra[9]);
+                    var valorDoCarro = Convert.ToDouble(quebra[10]);
+
+                    //cria o objeto vendedor com as características
+                    Vendedor vendedor = new Vendedor(nomeDoVendedor);
+
+                    //cria o objeto carro com as características
+                    Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
+
+                    //cria o objeto cliente com as características
+                    Cliente cliente = new Cliente(rg, nomeDoCliente);
+
+                    //cria o objeto venda com as características
+                    Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
+
+                    listaDeVenda.Add(venda);
+
+                }
+            }
+
         }
 
+        //altera o arquivo de venda
+        //recebe a lista de venda atualizadas e escreve no arquivo
+        public void AlterarArquivoDeVendas()
+        {
+            //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
+            //var é o tipo StreamWriter, pois o seu tipo é criado posteriormente ao sinal =
+            using (var arquivo = new StreamWriter(arquivoDeVendas))
+            {
+                //percorre o conjunto de dados e passar um por um
+                foreach (var listarVendas in this.listaDeVenda)
+                {
+                    arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHora + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
+                                     + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
+                                     "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
+                }
+            }
 
+        }
+        
+        //adiciona as vendas no controle de venda
+        public void AdicionarVendas(Venda venda)
+        {
+            //adiciona uma venda na lista
+            listaDeVenda.Add(venda);
+            //altera o arquivo de venda
+            AlterarArquivoDeVendas();
+        }
+
+        //gera o identificador da proxima venda, para a criação do objeto venda
+        //retorna um tipo inteiro
         public int GerarIdentificadorDaVenda()
         {
             //ordena a lista de venda para ser descendente de acordo com o codigo da lista de objetos e coloca o ultima venda como primeira
-            var ultimoRegistroDoCodigo = bancoDeVendas.listaDeVenda.OrderByDescending(venda => venda.codigo).First();
+            //utilizacao do OrderByDescending do LINQ, então ele pega a ordem descendente de um determinado campo
+            //utiliza o Lambda para detectar o ultimo codigo da lista de vendas
+            //pega o ultimo elemento da lista e coloca como primeiro
+            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.codigo).First();
 
+            //gera o identificador e adiciona mais um no ultimo codigo da venda
             int gerarIdentificador = ultimoRegistroDoCodigo.codigo + 1;
 
             return gerarIdentificador;
         }
 
+        //verifica se existe no sistema  as informações do objeto venda inseridas pelo vendedor 
+        //retorna se é valida ou não as informações do objeto venda
         public bool VerificarDadosParaOCancelamentoDeVenda(Cliente cliente, Carro carro)
         {
-            //metodo exist do colection para verificar se existe um dado da busca
-            bool verificarVenda = bancoDeVendas.listaDeVenda.Exists(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome)
+            //método que verifica na lista de vendas e retorna se encontrou a venda, utiliza o método Exists
+            //utiliza a função anônima para comparar cada venda pertencente a lista de vendas de acordo com o critério de busca recebido do objeto carro e cliente
+            bool verificarVenda = listaDeVenda.Exists(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome)
                     && venda.veiculo.chassi.Equals(carro.chassi) &&
                     venda.veiculo.marca.Equals(carro.marca) && venda.veiculo.modelo.Equals(carro.modelo) &&
                     venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
@@ -46,27 +147,38 @@ namespace Cappta.LojaDeCarro.Venda
             return verificarVenda;
         }
 
-        public void EfetuarOCancelamentoDeVenda(Cliente cliente, Carro carro)
+        //faz o cancelamento de uma venda de acordo com o cliente e carro inputados pelo vendedor
+        public void CancelamentoDeVenda(Cliente cliente, Carro carro)
         {
-            //linq sendo utilizado para buscar uma venda na lista de vendas -> utilização do where
-            var removerAVenda = bancoDeVendas.listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome) &&
+            //retorna o primeiro elemento encontrado correspondente ao objeto vendas.
+            //utilização da biblioteca LINQ para fazer a busca do vendas através do Where
+            //First para buscar somente o primeiro e unico elemento
+            //utiliza a função anônima para comparar cada carro pertencente a lista de vendas 
+            // de acordo com o critério de busca recebido do objeto vendas
+            var removerAVenda = listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome) &&
                     venda.veiculo.chassi.Equals(carro.chassi) &&
                     venda.veiculo.marca.Equals(carro.marca) && venda.veiculo.modelo.Equals(carro.modelo) &&
                     venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
                     venda.veiculo.valor.Equals(carro.valor)).First();
 
-            bancoDeVendas.listaDeVenda.Remove(removerAVenda);
+            //remove uma venda na lista de vendas
+            listaDeVenda.Remove(removerAVenda);
 
-            bancoDeVendas.Atualizar();
+            //altera arquivo de vendas
+            AlterarArquivoDeVendas();
 
         }
 
-
+        //faz a busca da venda de acordo com a data ou hora que foi inputado pelo vendedor
         public List<Venda> BuscarPorDataOuHora(string dataOuHora)
         {
+            //procura na lista de vendas que possui o critério de busca inputada pelo vendedor 
             //converte o atributo data para string e pergunta se nessa string contem a data buscada e armazena em uma lista
-            //armazena todos os elementos da lista baseado na busca por data ou hora através do FindAll
-            List<Venda> listaDeBuscaDeVendas = bancoDeVendas.listaDeVenda.FindAll(vendas => vendas.dataEHora.ToString().Contains(dataOuHora));
+            //armazena todos os elementos da lista de busca de venda baseado na busca por data ou hora através do FindAll
+            //armazenar todos os resultados em uma lista
+            //utiliza a função anônima para comparar cada venda pertencente a lista de vendas 
+            // de acordo com o critério de busca recebido por data ou hora
+            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHora.ToString().Contains(dataOuHora));
 
             return listaDeBuscaDeVendas;
         }

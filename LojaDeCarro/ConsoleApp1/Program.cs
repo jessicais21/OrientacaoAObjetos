@@ -96,7 +96,7 @@ namespace ConsoleApp1
 
         public static void RetornarListaDeCarro()
         {
-            var listaDeCarros = estoque.PegarListaDeCarro();
+            var listaDeCarros = estoque.listaDeCarro;
           
           
             foreach (var listarCarros in listaDeCarros)
@@ -113,7 +113,7 @@ namespace ConsoleApp1
 
         public static void RetornarListaDeVenda()
         {
-            var listaDeVendas = controleDeVendas.PegarListaDeVenda();
+            var listaDeVendas = controleDeVendas.listaDeVenda;
 
             foreach (var listarVendas in listaDeVendas)
             {
@@ -245,7 +245,7 @@ namespace ConsoleApp1
                 estoque.RemoverCarros(carro);
                 int identificador = controleDeVendas.GerarIdentificadorDaVenda();
                 Venda venda = new Venda(identificador, localDate, vendedor, cliente, carro);
-                controleDeVendas.AdicionarElementosNaListaDeVendas(venda);
+                controleDeVendas.AdicionarVendas(venda);
                 Console.WriteLine("venda realizada com sucesso\n");
             }
 
@@ -283,7 +283,7 @@ namespace ConsoleApp1
 
             if (verificarDadosDeCancelamento)
             {
-                controleDeVendas.EfetuarOCancelamentoDeVenda(cliente, carro);
+                controleDeVendas.CancelamentoDeVenda(cliente, carro);
                 estoque.AdicionarCarros(carro);
                 Console.WriteLine("cancelamento efetuado com sucesso");
             }

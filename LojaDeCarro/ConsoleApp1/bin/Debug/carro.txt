@@ -1,3 +1,4 @@
 50,Volkswagen,Uno,azul,2012,1500
 10,Ford,Fiesta,preto,2016,3234
 3,Chevrolet,Celta,marron,2014,2000
+111,Fiat,Uno,azul,2012,3500
