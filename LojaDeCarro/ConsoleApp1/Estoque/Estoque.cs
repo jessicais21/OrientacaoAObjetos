@@ -7,7 +7,6 @@ namespace Cappta.LojaDeCarro.Estoque
     //classe criada para armazenar o carro
    public class Estoque
     {
-
         public List<Carro> listaDeCarro { get; set; } = new List<Carro>();
 
         //somente para visualização do arquivo
