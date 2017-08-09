@@ -8,7 +8,7 @@ namespace ConsoleApp1
 {
     public class Program
     {
-        static ControleDeEstoque controleDeEstoque = new ControleDeEstoque();
+        static Estoque controleDeEstoque = new Estoque();
         static ControleDeVendas controleDeVendas = new ControleDeVendas();
 
         static void Main(string[] args)
