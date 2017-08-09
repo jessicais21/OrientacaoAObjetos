@@ -15,13 +15,13 @@ namespace Cappta.LojaDeCarro.Estoque
         //private para ser visualizado somente nessa classe porque eu não quero permitir que as outras classes visualize este atributo
         private string arquivoDoEstoque = "carro.txt";
    
-        //quando é instanciado o objeto é chamada a função PreencherListaDeCarro
+        //quando é criado o objeto é chamada a função PreencherListaDeCarro
         public Estoque()
         {
             PreencherListaDeCarro();
         }
 
-        //classe criada para quebra do arquivo carro, criando o objeto Carro e depois cria uma lista de objetos carro
+        //metodo criado para quebra do arquivo carro, criando o objeto Carro e depois cria uma lista de objetos carro
         public void PreencherListaDeCarro()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco 
@@ -55,7 +55,6 @@ namespace Cappta.LojaDeCarro.Estoque
 
 
         //recebe a lista de objetos carro e escreve no arquivo de Carro.
-        //altera a lista do 
         public void AlterarListaDeCarro()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco 
@@ -68,13 +67,14 @@ namespace Cappta.LojaDeCarro.Estoque
             }
         }
 
-
+        //retorna a lista de carro para o usuário
         public List<Carro> PegarListaDeCarro()
         {
             return listaDeCarro;
 
         }
 
+        //adiciona os carros no estoque, pega os dados o objeto carro
         public void AdicionarCarrosNoEstoque(Carro carro)
         {
             listaDeCarro.Add(carro);
