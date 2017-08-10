@@ -118,7 +118,7 @@ namespace ConsoleApp1
             foreach (var listarVendas in listaDeVendas)
             {
                 Console.WriteLine("Codigo da venda: " + listarVendas.codigo);
-                Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHora);
+                Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHoras);
                 Console.WriteLine("Nome do vendedor: " + listarVendas.vendedor.nome);
                 Console.WriteLine("Rg do cliente: " + listarVendas.cliente.rg);
                 Console.WriteLine("Nome do cliente: " + listarVendas.cliente.nome);
@@ -305,7 +305,7 @@ namespace ConsoleApp1
             foreach (var listarVendas in ResultadoDaBuscaPorDataOUHora)
             {
                 Console.WriteLine("Codigo da venda: " + listarVendas.codigo);
-                Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHora);
+                Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHoras);
                 Console.WriteLine("Nome do vendedor: " + listarVendas.vendedor.nome);
                 Console.WriteLine("Rg do cliente: " + listarVendas.cliente.rg);
                 Console.WriteLine("Nome do cliente: " + listarVendas.cliente.nome);

@@ -99,7 +99,7 @@ namespace Cappta.LojaDeCarro.Venda
                 //percorre o conjunto de dados e passar um por um
                 foreach (var listarVendas in this.listaDeVenda)
                 {
-                    arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHora + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
+                    arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHoras + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
                                      + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
                                      "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
                 }
@@ -178,7 +178,7 @@ namespace Cappta.LojaDeCarro.Venda
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada venda pertencente a lista de vendas 
             // de acordo com o critério de busca recebido por data ou hora
-            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHora.ToString().Contains(dataOuHora));
+            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHoras.ToString().Contains(dataOuHora));
 
             return listaDeBuscaDeVendas;
         }
