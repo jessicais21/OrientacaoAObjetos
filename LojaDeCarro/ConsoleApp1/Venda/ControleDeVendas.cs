@@ -14,7 +14,9 @@ namespace Cappta.LojaDeCarro.Venda
 
     //É o controle de vendas, no caso da concessionária é o controle de vendas
     //O controle de vendas é responsável por adicionar e cancelar vendas
-    //Para efetuar as operações de adicionar e cancelar venda no sistema é utilizado o arquivo 
+    //Para efetuar as operações de adicionar e cancelar venda no sistema é utilizado o arquivo
+    Revisar - "É o controle de vendas, no caso da concessionária é o controle de vendas"?
+    "Para efetuar as operações de adicionar e cancelar venda no sistema é utilizado o arquivo"?
     public class ControleDeVendas
     {
         //cria uma lista de objeto venda
@@ -81,6 +83,8 @@ namespace Cappta.LojaDeCarro.Venda
                     //cria o objeto venda com as características
                     Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
 
+                    Revisar - Eu sei que as linhas acima criam objetos, queremos saber o porque
+
                     listaDeVenda.Add(venda);
 
                 }
@@ -90,6 +94,7 @@ namespace Cappta.LojaDeCarro.Venda
 
         //altera o arquivo de venda
         //recebe a lista de venda atualizadas e escreve no arquivo
+        Recebe a lista? Por onde? 
         public void AlterarArquivoDeVendas()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
@@ -102,6 +107,8 @@ namespace Cappta.LojaDeCarro.Venda
                     arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHoras + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
                                      + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
                                      "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
+                                     
+                    Porque não cria uma constante para sua virgula? e poque não utilizar o $"{meuItemAqui}{MinhaVirgulaAqui}"? e depois passa essa string para o metodo WriteLine
                 }
             }
 
