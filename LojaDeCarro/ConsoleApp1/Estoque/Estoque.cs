@@ -67,6 +67,7 @@ namespace Cappta.LojaDeCarro.Estoque
 
         //altera o estoque de carros
         //recebe a lista de carros atualizadas e escreve no arquivo
+        Recebe a lista de carros? Por onde?
         public void AlterarArquivoCarro()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco
@@ -92,6 +93,7 @@ namespace Cappta.LojaDeCarro.Estoque
         }
 
         //conta os carros armazenados no estoque de acordo com o critério de busca de marca, modelo e ano
+        Se eu quiser saber o total de carros? Ou apenas por marca e etc
         public int QuantidadeDeCarro(string marca, string modelo, int ano)
         {
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
@@ -105,6 +107,7 @@ namespace Cappta.LojaDeCarro.Estoque
 
         //verifica se as informações do objeto carro inseridas pelo vendedor está existe no sistema 
         //retorna se é valida ou não as informações do objeto carro
+        Que informações? Tenta melhorar o nome do metodo, falamos isso na apresentacao
         public bool VerificarAsInformaçoesDoCarro(Carro carro)
         {
             //método que verifica na lista de carros e retorna se encontrou o carro, utiliza o método Exists
