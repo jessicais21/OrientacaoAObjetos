@@ -32,6 +32,8 @@ public class Venda
         {
           //o codigo e o data é gerado automaticamente pelo sistema por isso que não precisa de verificação
           //quando é recebido os objetos vendedor, cliente e veiculo eles já passaram pela verificação ao serem instanciados
+
+          
                 this.codigo = codigo;
                 this.dataEHoras = dataEhora;
                 this.veiculo = veiculo;

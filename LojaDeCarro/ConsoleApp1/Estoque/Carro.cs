@@ -1,4 +1,6 @@
 ﻿//namespace utilizado para organização do codigo, pensado no modulo de estoque
+using System;
+
 namespace Cappta.LojaDeCarro.Estoque
 {
     //representa o objeto Carro , assina com a interface IVeiculo
@@ -18,26 +20,25 @@ namespace Cappta.LojaDeCarro.Estoque
         {
             //valida os campos durante a criação do objeto Carro
             //verifica se o chassi, marca, modelo, cor, ano e valor, não tem espaço em branco e não é vazio e não é nulo
+            if (string.IsNullOrEmpty(chassi)  || string.IsNullOrWhiteSpace(chassi)  || string.IsNullOrEmpty(marca) || string.IsNullOrWhiteSpace(marca)
+                  || string.IsNullOrEmpty(modelo)  ||  string.IsNullOrWhiteSpace(modelo) && string.IsNullOrEmpty(cor)  || string.IsNullOrWhiteSpace(cor) 
+                  || string.IsNullOrEmpty(ano.ToString())  || string.IsNullOrWhiteSpace(ano.ToString()) || string.IsNullOrEmpty(valor.ToString()) || 
+                  string.IsNullOrWhiteSpace(valor.ToString()) )
+              {  
+                 //lança uma exceção
+                throw new ArgumentNullException();
 
-            this.chassi = chassi;
-            this.marca = marca;
-            this.modelo = modelo;
-            this.cor = cor;
-            this.ano = ano;
-            this.valor = valor;
-            /**  if (string.IsNullOrEmpty(chassi) == false && string.IsNullOrWhiteSpace(chassi) == false && string.IsNullOrEmpty(marca) == false && string.IsNullOrWhiteSpace(marca) == false
-                  && string.IsNullOrEmpty(modelo) == false &&  string.IsNullOrWhiteSpace(modelo) == false && string.IsNullOrEmpty(cor) == false && string.IsNullOrWhiteSpace(cor) == false
-                  && string.IsNullOrEmpty(ano.ToString()) == false && string.IsNullOrWhiteSpace(ano.ToString()) == false && string.IsNullOrEmpty(valor.ToString()) == false && 
-                  string.IsNullOrWhiteSpace(valor.ToString()) == false)
-              {  //estes atributos da classe carro representado pelo this, recebe os valores do construtor
-                  this.chassi = chassi;
-                  this.marca = marca;
-                  this.modelo = modelo;
-                  this.cor = cor;
-                  this.ano = ano;
-                  this.valor = valor;
+              }
 
-              }*/
+            else
+            {//estes atributos da classe carro representado pelo this, recebe os valores do construtor
+                this.chassi = chassi;
+                this.marca = marca;
+                this.modelo = modelo;
+                this.cor = cor;
+                this.ano = ano;
+                this.valor = valor;
+            }
 
         }
 

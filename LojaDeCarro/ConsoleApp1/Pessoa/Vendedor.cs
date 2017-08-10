@@ -10,19 +10,23 @@ namespace Cappta.LojaDeCarro.Pessoas
         public string nome { get; set; }
 
         //construtor da classe vendedor, obrigatoriamente ele tem que ter um nome
-        public Vendedor(string nome)
+        public Vendedor(string nomeRecebido)
         {
-            //valida os campos durante a criação do objeto Vendedor
-            //verifica se o nome é nulo ou vazio
-            if (string.IsNullOrEmpty(nome))
+          //verifica se a string é nula e gera uma exceção
+            if (string.IsNullOrEmpty(nomeRecebido))
             {
-                Console.Write("o valor é nulo");
-                //estes atributos da classe da classe vendedor representado pelo this, recebe os valores recebidos do construtor
-                return;
+                //lança uma exceção 
+                throw new ArgumentNullException();
+             
             }
-            Console.Write("pegando valores");
-            this.nome = nome;  
+
+            //confirma a criação do objeto com referencia ao atributo
+            else
+            {
+                this.nome = nome;
+            }
         }
 
+      
     }
 }

@@ -66,14 +66,13 @@ namespace Cappta.LojaDeCarro.Estoque
 
 
         //altera o estoque de carros
-        //recebe a lista de carros atualizadas e escreve no arquivo
         public void AlterarArquivoCarro()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco
             //var é o tipo StreamWriter, pois o seu tipo é criado posteriormente ao sinal =
             using (var arquivo = new StreamWriter(arquivoDoEstoque))
             {
-                //escreve cada elemento da lista de carros no arquivo 
+                //escreve cada elemento da lista de carros no arquivo. Recebe o atributo listaDeCarro.
                 foreach (var listarCarros in this.listaDeCarro)
                 {
                     arquivo.WriteLine(listarCarros.chassi + "," + listarCarros.marca + "," + listarCarros.modelo + "," + listarCarros.cor + "," + listarCarros.ano + "," + listarCarros.valor);
@@ -91,21 +90,53 @@ namespace Cappta.LojaDeCarro.Estoque
             AlterarArquivoCarro();
         }
 
-        //conta os carros armazenados no estoque de acordo com o critério de busca de marca, modelo e ano
-        public int QuantidadeDeCarro(string marca, string modelo, int ano)
+        //conta os carros armazenados no estoque de acordo com o critério de busca de marca 
+        //somente para saber de acordo com o critério da busca
+        public int QuantidadeDeCarroDeAcordoComAMarca( string marca)
         {
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
-            // de acordo com o critério de busca de marca, modelo e ano  
-            int quantidade = listaDeCarro.Count(carro => carro.marca.Equals(marca) && carro.modelo.Equals(modelo) && carro.ano.Equals(ano));
+            // de acordo com o critério de busca de marca
+            int quantidade = listaDeCarro.Count(carro => carro.marca.Equals(marca));
 
             return quantidade;
+        }
+
+        //conta os carros armazenados no estoque de acordo com o critério de busca de marca 
+        //somente para saber de acordo com o critério da busca
+        public int QuantidadeDeCarroDeAcordoComOModelo(string modelo)
+        {
+            //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
+            //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
+            // de acordo com o critério de busca modelo 
+            int quantidade = listaDeCarro.Count(carro => carro.modelo.Equals(modelo));
+
+            return quantidade;
+        }
+
+        //conta os carros armazenados no estoque de acordo com o critério de busca de marca 
+        //somente para saber de acordo com o critério da busca
+        public int QuantidadeDeCarroDeAcordoComOAno(int ano)
+        {
+            //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
+            //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
+            // de acordo com o critério de busca de ano  
+            int quantidade = listaDeCarro.Count(carro => carro.ano == ano);
+
+            return quantidade;
+        }
+
+            //quantidade de carros total cadastrados no sistema
+            public int QuantidadeTotalDeCarrosNoSistema()
+        {//conta os elementos da lista de carro
+            int quantidadeTotal = listaDeCarro.Count;
+            return quantidadeTotal;
         }
 
 
         //verifica se as informações do objeto carro inseridas pelo vendedor está existe no sistema 
         //retorna se é valida ou não as informações do objeto carro
-        public bool VerificarAsInformaçoesDoCarro(Carro carro)
+        public bool VerificarSeOCarroExisteNoEstoque(Carro carro)
         {
             //método que verifica na lista de carros e retorna se encontrou o carro, utiliza o método Exists
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 

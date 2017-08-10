@@ -12,9 +12,9 @@ using System;
 namespace Cappta.LojaDeCarro.Venda
 {
 
-    //É o controle de vendas, no caso da concessionária é o controle de vendas
-    //O controle de vendas é responsável por adicionar e cancelar vendas
-    //Para efetuar as operações de adicionar e cancelar venda no sistema é utilizado o arquivo 
+ 
+    //É o controle de vendas, é responsável por adicionar e cancelar vendas
+    //Para alterações de venda no sistema é utilizado o arquivo 
     public class ControleDeVendas
     {
         //cria uma lista de objeto venda
@@ -69,16 +69,16 @@ namespace Cappta.LojaDeCarro.Venda
                     var anoDoCarro = Int32.Parse(quebra[9]);
                     var valorDoCarro = Convert.ToDouble(quebra[10]);
 
-                    //cria o objeto vendedor com as características
+                    //cria o objeto vendedor com as características, porque representa um vendedor da vida real
                     Vendedor vendedor = new Vendedor(nomeDoVendedor);
 
-                    //cria o objeto carro com as características
+                    //cria o objeto carro com as características, porque representa um carro na vida real
                     Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
 
-                    //cria o objeto cliente com as características
+                    //cria o objeto cliente com as características, representa um cliente na vida real
                     Cliente cliente = new Cliente(rg, nomeDoCliente);
 
-                    //cria o objeto venda com as características
+                    //cria o objeto venda com as características que utiliza os objetos vendedor, carro e cliente
                     Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
 
                     listaDeVenda.Add(venda);
@@ -88,8 +88,7 @@ namespace Cappta.LojaDeCarro.Venda
 
         }
 
-        //altera o arquivo de venda
-        //recebe a lista de venda atualizadas e escreve no arquivo
+        //altera o arquivo de venda     
         public void AlterarArquivoDeVendas()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
@@ -97,6 +96,7 @@ namespace Cappta.LojaDeCarro.Venda
             using (var arquivo = new StreamWriter(arquivoDeVendas))
             {
                 //percorre o conjunto de dados e passar um por um
+                //recebe a lista de venda atualizadas e escreve no arquivo
                 foreach (var listarVendas in this.listaDeVenda)
                 {
                     arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHoras + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
