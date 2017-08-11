@@ -71,8 +71,12 @@
             this.dataGridVendas = new System.Windows.Forms.DataGridView();
             this.label16 = new System.Windows.Forms.Label();
             this.click_todasAsVendas = new System.Windows.Forms.Button();
-            this.visualizarVendasText = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.pesquisarPorDataOuHora = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.click_mostrar = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.click_cancelar = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCarros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVendas)).BeginInit();
@@ -80,6 +84,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.click_cancelar);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.corCarroCadastrarVenda);
             this.panel1.Controls.Add(this.click_cadastrar);
@@ -99,9 +104,9 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.vendedorNomeCadastrarVenda);
-            this.panel1.Location = new System.Drawing.Point(26, 25);
+            this.panel1.Location = new System.Drawing.Point(26, 59);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 365);
+            this.panel1.Size = new System.Drawing.Size(261, 378);
             this.panel1.TabIndex = 0;
             // 
             // label10
@@ -264,9 +269,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(33, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "cadastrar vendas";
+            this.label2.Text = "Vendas";
             // 
             // label11
             // 
@@ -443,10 +448,11 @@
             // 
             // dataGridVendas
             // 
+            this.dataGridVendas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridVendas.Location = new System.Drawing.Point(781, 364);
+            this.dataGridVendas.Location = new System.Drawing.Point(781, 138);
             this.dataGridVendas.Name = "dataGridVendas";
-            this.dataGridVendas.Size = new System.Drawing.Size(445, 150);
+            this.dataGridVendas.Size = new System.Drawing.Size(680, 284);
             this.dataGridVendas.TabIndex = 23;
             // 
             // label16
@@ -468,29 +474,70 @@
             this.click_todasAsVendas.UseVisualStyleBackColor = true;
             this.click_todasAsVendas.Click += new System.EventHandler(this.click_todasAsVendas_Click);
             // 
-            // visualizarVendasText
+            // pesquisarPorDataOuHora
             // 
-            this.visualizarVendasText.Location = new System.Drawing.Point(795, 149);
-            this.visualizarVendasText.Multiline = true;
-            this.visualizarVendasText.Name = "visualizarVendasText";
-            this.visualizarVendasText.Size = new System.Drawing.Size(410, 138);
-            this.visualizarVendasText.TabIndex = 26;
+            this.pesquisarPorDataOuHora.Location = new System.Drawing.Point(922, 91);
+            this.pesquisarPorDataOuHora.Name = "pesquisarPorDataOuHora";
+            this.pesquisarPorDataOuHora.Size = new System.Drawing.Size(100, 20);
+            this.pesquisarPorDataOuHora.TabIndex = 26;
             // 
-            // listView1
+            // label17
             // 
-            this.listView1.Location = new System.Drawing.Point(357, 417);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(354, 108);
-            this.listView1.TabIndex = 28;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(919, 42);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 13);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "data ou hora";
+            // 
+            // click_mostrar
+            // 
+            this.click_mostrar.Location = new System.Drawing.Point(1041, 87);
+            this.click_mostrar.Name = "click_mostrar";
+            this.click_mostrar.Size = new System.Drawing.Size(75, 23);
+            this.click_mostrar.TabIndex = 28;
+            this.click_mostrar.Text = "mostrar";
+            this.click_mostrar.UseVisualStyleBackColor = true;
+            this.click_mostrar.Click += new System.EventHandler(this.click_mostrar_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(919, 69);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 13);
+            this.label18.TabIndex = 29;
+            this.label18.Text = "../../../  ..:..:..";
+            // 
+            // click_cancelar
+            // 
+            this.click_cancelar.Location = new System.Drawing.Point(10, 339);
+            this.click_cancelar.Name = "click_cancelar";
+            this.click_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.click_cancelar.TabIndex = 19;
+            this.click_cancelar.Text = "cancelar";
+            this.click_cancelar.UseVisualStyleBackColor = true;
+            this.click_cancelar.Click += new System.EventHandler(this.click_cancelar_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(33, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(210, 13);
+            this.label19.TabIndex = 30;
+            this.label19.Text = "Cancelamento: dados do cliente e do carro";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1238, 558);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.visualizarVendasText);
+            this.ClientSize = new System.Drawing.Size(1475, 452);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.click_mostrar);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.pesquisarPorDataOuHora);
             this.Controls.Add(this.click_todasAsVendas);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.dataGridVendas);
@@ -571,8 +618,12 @@
         private System.Windows.Forms.DataGridView dataGridVendas;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button click_todasAsVendas;
-        private System.Windows.Forms.TextBox visualizarVendasText;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TextBox pesquisarPorDataOuHora;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button click_mostrar;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button click_cancelar;
+        private System.Windows.Forms.Label label19;
     }
 }
 

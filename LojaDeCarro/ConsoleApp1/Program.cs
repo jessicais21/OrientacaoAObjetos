@@ -88,7 +88,7 @@ namespace ConsoleApp1
 
         public static void TotalDeCarros()
         {
-            Estoque estoque = new Estoque();
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
             int numeroTotalDeCarros = estoque.QuantidadeTotalDeCarrosNoSistema();
             Console.WriteLine(numeroTotalDeCarros);
         }
@@ -121,7 +121,7 @@ namespace ConsoleApp1
 
         public static void RetornarListaDeCarro()
         {
-          Estoque estoque = new Estoque();
+          EstoqueDeCarro estoque = new EstoqueDeCarro();
             var listaDeCarros = estoque.listaDeCarro;
           
           
@@ -144,7 +144,7 @@ namespace ConsoleApp1
 
             foreach (var listarVendas in listaDeVendas)
             {
-                Console.WriteLine("Codigo da venda: " + listarVendas.identificadorDaVenda);
+                Console.WriteLine("Codigo da venda: " + listarVendas.numeroDaVenda);
                 Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHorasDaVenda);
                 Console.WriteLine("Nome do vendedor: " + listarVendas.vendedor.nome);
                 Console.WriteLine("Rg do cliente: " + listarVendas.cliente.rg);
@@ -164,7 +164,7 @@ namespace ConsoleApp1
             Console.Write("marca: ");
             string marca = Console.ReadLine();
 
-             Estoque estoque = new Estoque();
+             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(marca);
 
             foreach (var listarCarros in resultadoDaBuscaPelaMarca)
@@ -185,7 +185,7 @@ namespace ConsoleApp1
             Console.Write("modelo: ");
             string modelo = Console.ReadLine();
 
-             Estoque estoque = new Estoque();
+             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modelo);
 
            
@@ -207,7 +207,7 @@ namespace ConsoleApp1
             Console.Write("cor: ");
             string cor = Console.ReadLine();
 
-            Estoque estoque = new Estoque();
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(cor);
 
             foreach (var listarCarros in resultadoDaBuscaPelaCor)
@@ -227,7 +227,7 @@ namespace ConsoleApp1
             Console.Write("Digite marca");
             string marca= Console.ReadLine();
 
-             Estoque estoque = new Estoque();
+             EstoqueDeCarro estoque = new EstoqueDeCarro();
             int retornar = estoque.QuantidadeDeCarroDeAcordoComAMarca(marca);
 
             Console.WriteLine("quantidade de carros : "+retornar);
@@ -239,7 +239,7 @@ namespace ConsoleApp1
             Console.Write("Digite modelo");
             string modelo = Console.ReadLine();
 
-            Estoque estoque = new Estoque();
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
 
             int retornar = estoque.QuantidadeDeCarroDeAcordoComOModelo(modelo);
 
@@ -252,7 +252,7 @@ namespace ConsoleApp1
             Console.Write("Digite o ano");
             int ano = Convert.ToInt32(Console.ReadLine());
 
-            Estoque estoque = new Estoque();
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
 
             int retornar = estoque.QuantidadeDeCarroDeAcordoComOAno(ano);
 
@@ -287,7 +287,7 @@ namespace ConsoleApp1
             double valor = Double.Parse(Console.ReadLine());
             Carro carro = new Carro(chassiDoCarro, marca, modelo, cor, ano, valor);
 
-            Estoque estoque = new Estoque();
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
             bool checarInformacoesDoCarro = estoque.VerificarSeOCarroExisteNoEstoque(carro);
 
             if (checarInformacoesDoCarro)
@@ -335,20 +335,7 @@ namespace ConsoleApp1
 
              ControleDeVendas controleDeVendas = new ControleDeVendas();
 
-            var verificarDadosDeCancelamento = controleDeVendas.VerificarDadosParaOCancelamentoDeVenda(cliente, carro);
-
-            if (verificarDadosDeCancelamento)
-            {
-                controleDeVendas.CancelamentoDeVenda(cliente, carro);
-                Estoque estoque = new Estoque();
-                estoque.AdicionarCarros(carro);
-                Console.WriteLine("cancelamento efetuado com sucesso");
-            }
-
-            else
-            {
-                Console.WriteLine("dados incorretos para o cancelamento de venda");
-            }
+           
         }
 
 
@@ -363,7 +350,7 @@ namespace ConsoleApp1
 
             foreach (var listarVendas in ResultadoDaBuscaPorDataOUHora)
             {
-                Console.WriteLine("Codigo da venda: " + listarVendas.identificadorDaVenda);
+                Console.WriteLine("Codigo da venda: " + listarVendas.numeroDaVenda);
                 Console.WriteLine("Date e hora da venda: " + listarVendas.dataEHorasDaVenda);
                 Console.WriteLine("Nome do vendedor: " + listarVendas.vendedor.nome);
                 Console.WriteLine("Rg do cliente: " + listarVendas.cliente.rg);

@@ -9,7 +9,7 @@ namespace Cappta.LojaDeCarro.Estoque
     //É o controle de produtos, no caso da concessionária é o controle de carros
     //O controle de carros é responsável por adicionar e remover carros do estoque
     //Para a alteração dos carros no estoque no sistema é utilizado o arquivo 
-    public class Estoque
+    public class EstoqueDeCarro
     {
         //cria uma lista de objeto do carro
         //utilizando a propriedade get e set - porque estou alterando a lista de objetos do Carro durante a classe 
@@ -22,7 +22,7 @@ namespace Cappta.LojaDeCarro.Estoque
 
         //construtor vazio da classe Estoque, ele é chamado quando é criado o objeto Estoque
         // o construtor chama a função PreencherListaDeCarro 
-        public Estoque()
+        public EstoqueDeCarro()
         { //a função é responsável por preencher o estoque de carros
             PreencherListaEstoqueDeCarro();
         }

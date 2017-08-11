@@ -47,7 +47,7 @@
     <Compile Include="Estoque\Carro.cs" />
     <Compile Include="Pessoa\Cliente.cs" />
     <Compile Include="Venda\ControleDeVendas.cs" />
-    <Compile Include="Estoque\Estoque.cs" />
+    <Compile Include="Estoque\EstoqueDeCarro.cs" />
     <Compile Include="Estoque\IVeiculo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

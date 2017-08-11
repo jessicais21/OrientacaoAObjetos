@@ -22,7 +22,7 @@ public class Venda
         //classe DateTime responsável pela data 
         public DateTime dataEHorasDaVenda { get; set; }
         //o codigo da venda é o identificador de cada venda tem as propriedades get e set
-        public int identificadorDaVenda { get; set; }
+        public int numeroDaVenda { get; set; }
 
         //construtores que exigem os valores no argumento quando o objeto seja instanciado
         //obriga a que quando a venda seja realizada, passe os paramentros que tem dentro do argumento.
@@ -43,7 +43,7 @@ public class Venda
             }
 
             else{
-                this.identificadorDaVenda = identificadorGeradoDaVenda;
+                this.numeroDaVenda = identificadorGeradoDaVenda;
                 this.dataEHorasDaVenda = dataEhora;
                 this.veiculo = veiculo;
                 this.cliente = cliente;

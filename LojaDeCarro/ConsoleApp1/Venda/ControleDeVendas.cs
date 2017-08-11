@@ -99,7 +99,7 @@ namespace Cappta.LojaDeCarro.Venda
                 //recebe a lista de venda atualizadas e escreve no arquivo
                 foreach (var listarVendas in this.listaDeVenda)
                 {
-                    arquivo.WriteLine(listarVendas.identificadorDaVenda + "," + listarVendas.dataEHorasDaVenda + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
+                    arquivo.WriteLine(listarVendas.numeroDaVenda + "," + listarVendas.dataEHorasDaVenda + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
                                      + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
                                      "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
                 }
@@ -116,6 +116,34 @@ namespace Cappta.LojaDeCarro.Venda
             AlterarArquivoDeVendas();
         }
 
+        //verificar dados para efetuar a venda da venda
+        public string VerificarDadosParaEfetuarVenda (Vendedor vendedor, Cliente cliente, Carro carro)
+        {
+            //cria do objeto estoque de carro, responsável por fazer o controle de carros
+            EstoqueDeCarro estoque = new EstoqueDeCarro();
+            //verifica se o carro existe no estoque
+            bool checarInformacoesDoCarro = estoque.VerificarSeOCarroExisteNoEstoque(carro);
+
+            if (checarInformacoesDoCarro)
+            {
+                DateTime localDate = DateTime.Now;
+                //remove o carro do estoque.
+                estoque.RemoverCarros(carro);
+                //gera o numero identificador para criação da venda
+                int Numeroidentificador = GerarIdentificadorDaVenda();
+                //representa o objeto da vida real venda
+                Venda venda = new Venda(Numeroidentificador, localDate, vendedor, cliente, carro);
+                AdicionarVendas(venda);
+                return "Venda efetuada com sucesso";
+            }
+
+
+            else
+            {
+                return "O carro digitado não pertence ao estoque";
+            }
+        }
+
         //gera o identificador da proxima venda, para a criação do objeto venda
         //retorna um tipo inteiro
         public int GerarIdentificadorDaVenda()
@@ -124,17 +152,17 @@ namespace Cappta.LojaDeCarro.Venda
             //utilizacao do OrderByDescending do LINQ, então ele pega a ordem descendente de um determinado campo
             //utiliza o Lambda para detectar o ultimo codigo da lista de vendas
             //pega o ultimo elemento da lista e coloca como primeiro
-            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.identificadorDaVenda).First();
+            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.numeroDaVenda).First();
 
             //gera o identificador e adiciona mais um no ultimo codigo da venda
-            int gerarIdentificador = ultimoRegistroDoCodigo.identificadorDaVenda + 1;
+            int gerarIdentificador = ultimoRegistroDoCodigo.numeroDaVenda + 1;
 
             return gerarIdentificador;
         }
 
         //verifica se existe no sistema  as informações do objeto venda inseridas pelo vendedor 
         //retorna se é valida ou não as informações do objeto venda
-        public bool VerificarDadosParaOCancelamentoDeVenda(Cliente cliente, Carro carro)
+        public string VerificarDadosParaOCancelamentoDeVenda(Cliente cliente, Carro carro)
         {
             //método que verifica na lista de vendas e retorna se encontrou a venda, utiliza o método Exists
             //utiliza a função anônima para comparar cada venda pertencente a lista de vendas de acordo com o critério de busca recebido do objeto carro e cliente
@@ -144,7 +172,22 @@ namespace Cappta.LojaDeCarro.Venda
                     venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
                     venda.veiculo.valor.Equals(carro.valor));
 
-            return verificarVenda;
+
+            if (verificarVenda)
+            {
+                CancelamentoDeVenda(cliente, carro);
+                //adiciona no estoque de carros que é o objeto responsável por controlar os carros
+                EstoqueDeCarro estoque = new EstoqueDeCarro();
+                estoque.AdicionarCarros(carro);
+                return "cancelamento efetuado com sucesso";
+            }
+
+            else
+            {
+                return "dados incorretos para o cancelamento";
+            }
+
+          
         }
 
         //faz o cancelamento de uma venda de acordo com o cliente e carro inputados pelo vendedor

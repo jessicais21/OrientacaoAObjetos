@@ -1,2 +1,4 @@
 50,Volkswagen,Uno,azul,2012,1500
 10,Ford,Fiesta,preto,2016,3234
+32,Fiat,Strada,cinza,2017,60000
+4,Fiat,Strada,amarelo,2012,3500
