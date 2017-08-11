@@ -117,20 +117,13 @@ namespace WindowsFormsApp1
 
         private void click_todasAsVendas_Click(object sender, EventArgs e)
         {
-            //  verifica se o dataGridVendas é diferente de nulo
-            if (this.dataGridVendas.DataSource!= null)
-            {
-                //então afirma que que dataSource é nulo
+          //então afirma que que dataSource é nulo
                 this.dataGridVendas.DataSource = null;
-            }
-
+          
             //então já que o dataGridVendas é nulo
-            else
-            {
-                //limpar todas as linhas do dataGridView, 
+           //limpar todas as linhas do dataGridView, 
                 this.dataGridVendas.Rows.Clear();
 
-            }
             //o objeto controle de vendas é responsável por adicionar ou remover vendas.
             ControleDeVendas controleDeVendas = new ControleDeVendas();
 
@@ -169,20 +162,12 @@ namespace WindowsFormsApp1
 
         private void click_mostrar_Click(object sender, EventArgs e)
         {
-            //  verifica se o dataGridVendas é diferente de nulo
-            if (this.dataGridVendas.DataSource != null)
-            {
-                //então afirma que que dataSource é nulo
-                this.dataGridVendas.DataSource = null;
-            }
 
-            //então já que o dataGridVendas é nulo
-            else
-            {
-                //limpar todas as linhas do dataGridView, 
-                this.dataGridVendas.Rows.Clear();
+            //então afirma que que dataSource é nulo
+            this.dataGridVendas.DataSource = null;
 
-            }
+            //limpar todas as linhas do dataGridView, 
+            this.dataGridVendas.Rows.Clear();
 
             //o objeto controle de vendas é responsável por adicionar ou remover vendas.
             ControleDeVendas controleDeVendas = new ControleDeVendas();
