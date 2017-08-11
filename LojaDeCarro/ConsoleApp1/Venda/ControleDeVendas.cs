@@ -72,12 +72,12 @@ namespace Cappta.LojaDeCarro.Venda
                     //cria o objeto vendedor com as características, porque representa um vendedor da vida real
                     Vendedor vendedor = new Vendedor(nomeDoVendedor);
 
-                    //cria o objeto carro com as características, porque representa um carro na vida real
-                    Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
-
                     //cria o objeto cliente com as características, representa um cliente na vida real
                     Cliente cliente = new Cliente(rg, nomeDoCliente);
 
+                    //cria o objeto carro com as características, porque representa um carro na vida real
+                    Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
+ 
                     //cria o objeto venda com as características que utiliza os objetos vendedor, carro e cliente
                     Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
 
@@ -99,7 +99,7 @@ namespace Cappta.LojaDeCarro.Venda
                 //recebe a lista de venda atualizadas e escreve no arquivo
                 foreach (var listarVendas in this.listaDeVenda)
                 {
-                    arquivo.WriteLine(listarVendas.codigo + "," + listarVendas.dataEHoras + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
+                    arquivo.WriteLine(listarVendas.identificadorDaVenda + "," + listarVendas.dataEHorasDaVenda + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
                                      + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
                                      "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
                 }
@@ -124,10 +124,10 @@ namespace Cappta.LojaDeCarro.Venda
             //utilizacao do OrderByDescending do LINQ, então ele pega a ordem descendente de um determinado campo
             //utiliza o Lambda para detectar o ultimo codigo da lista de vendas
             //pega o ultimo elemento da lista e coloca como primeiro
-            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.codigo).First();
+            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.identificadorDaVenda).First();
 
             //gera o identificador e adiciona mais um no ultimo codigo da venda
-            int gerarIdentificador = ultimoRegistroDoCodigo.codigo + 1;
+            int gerarIdentificador = ultimoRegistroDoCodigo.identificadorDaVenda + 1;
 
             return gerarIdentificador;
         }
@@ -178,7 +178,7 @@ namespace Cappta.LojaDeCarro.Venda
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada venda pertencente a lista de vendas 
             // de acordo com o critério de busca recebido por data ou hora
-            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHoras.ToString().Contains(dataOuHora));
+            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHorasDaVenda.ToString().Contains(dataOuHora));
 
             return listaDeBuscaDeVendas;
         }

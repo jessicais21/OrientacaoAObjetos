@@ -20,28 +20,35 @@ public class Venda
         //variável do tipo IVeículo que tem as propriedades get e set
         public IVeiculo veiculo { get; set; }
         //classe DateTime responsável pela data 
-        public DateTime dataEHoras { get; set; }
+        public DateTime dataEHorasDaVenda { get; set; }
         //o codigo da venda é o identificador de cada venda tem as propriedades get e set
-        public int codigo { get; set; }
+        public int identificadorDaVenda { get; set; }
 
         //construtores que exigem os valores no argumento quando o objeto seja instanciado
         //obriga a que quando a venda seja realizada, passe os paramentros que tem dentro do argumento.
         //aplicação do polimorfismo em veiculo, classe carro sendo recebida e construtor utilizando o IVeiculo
         //além do codigo e hora recebe os objetos vendedor, cliente e carro do Form
-        public Venda(int codigo, DateTime dataEhora, Vendedor vendedor, Cliente cliente, IVeiculo veiculo)
+        public Venda(int identificadorGeradoDaVenda, DateTime dataEhora, Vendedor vendedor, Cliente cliente, IVeiculo veiculo)
         {
-          //o codigo e o data é gerado automaticamente pelo sistema por isso que não precisa de verificação
-          //quando é recebido os objetos vendedor, cliente e veiculo eles já passaram pela verificação ao serem instanciados
+            //validação durante a criação do objeto
+            //IsNUllOrWhiteSpace - verificar se tem espaço em branco e também inclui a verificação de espaço vazio.
+            //isNullOrEmpty - verifica se tem espaço vazio ou nulo
+            //verifica se as referencias dos tipos DataEhora, vendedor, cliente e veiculo
+            if (identificadorGeradoDaVenda < 0 || dataEhora==null ||vendedor==null 
+                ||  cliente==null || veiculo==null){
 
-          
-                this.codigo = codigo;
-                this.dataEHoras = dataEhora;
+                //lança uma exceção
+                throw new ArgumentNullException();
+
+            }
+
+            else{
+                this.identificadorDaVenda = identificadorGeradoDaVenda;
+                this.dataEHorasDaVenda = dataEhora;
                 this.veiculo = veiculo;
                 this.cliente = cliente;
                 this.vendedor = vendedor;
-          
-           
-
+            }
         }
     }
 }

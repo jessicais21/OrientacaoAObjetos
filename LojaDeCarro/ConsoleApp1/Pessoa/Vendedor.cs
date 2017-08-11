@@ -1,6 +1,5 @@
 ﻿using System;
 
-//namespace utilizado para organização do codigo, pensado no modulo de pessoas
 namespace Cappta.LojaDeCarro.Pessoas
 {
     //Vendedor é um objeto do sistema, porque ele é um funcionário da concessionária de veículos
@@ -12,18 +11,18 @@ namespace Cappta.LojaDeCarro.Pessoas
         //construtor da classe vendedor, obrigatoriamente ele tem que ter um nome
         public Vendedor(string nomeRecebido)
         {
-          //verifica se a string é nula e gera uma exceção
-            if (string.IsNullOrEmpty(nomeRecebido))
-            {
+            //verifica se a string é nula e gera uma exceção
+            //isNullOrEmpty - verifica se tem espaço vazio ou nulo
+             if (string.IsNullOrWhiteSpace(nomeRecebido))
+           {
                 //lança uma exceção 
-                throw new ArgumentNullException();
-             
-            }
+               throw new ArgumentNullException();
+             }
 
             //confirma a criação do objeto com referencia ao atributo
             else
             {
-                this.nome = nome;
+                this.nome = nomeRecebido;
             }
         }
 

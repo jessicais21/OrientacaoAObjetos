@@ -1,8 +1,6 @@
 ﻿using System;
-//responsável pela utilização do Collections
 using System.Collections.Generic;
 using System.IO;
-//responsável pela utilização das funções do LINQ
 using System.Linq;
 
 namespace Cappta.LojaDeCarro.Estoque
@@ -126,8 +124,18 @@ namespace Cappta.LojaDeCarro.Estoque
             return quantidade;
         }
 
-            //quantidade de carros total cadastrados no sistema
-            public int QuantidadeTotalDeCarrosNoSistema()
+        public int QuantidadeDeCarroDeAcordoComACor(string cor)
+        {
+            //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
+            //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
+            // de acordo com o critério de busca de ano  
+            int quantidade = listaDeCarro.Count(carro => carro.cor == cor);
+
+            return quantidade;
+        }
+
+        //quantidade de carros total cadastrados no sistema
+        public int QuantidadeTotalDeCarrosNoSistema()
         {//conta os elementos da lista de carro
             int quantidadeTotal = listaDeCarro.Count;
             return quantidadeTotal;
@@ -203,6 +211,18 @@ namespace Cappta.LojaDeCarro.Estoque
             return listaDeCarroPelaCor;
         }
 
+        //faz a busca no estoque de carros de acordo com o ano que foi inputado pelo vendedor 
+        public List<Carro> PesquisarCarrosPorAno(int ano)
+        {
+            //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
+            //utiliza o metodo o Collection FindAll que procura todas as ano de carro de acordo com o critério de busca
+            //armazenar todos os resultados em uma lista
+            //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
+            // de acordo com o critério de busca recebido do ano de carros
+            List<Carro> listaDeCarroPorAno = listaDeCarro.FindAll(carro => carro.ano==ano);
+
+            return listaDeCarroPorAno;
+        }
     }
 
 }

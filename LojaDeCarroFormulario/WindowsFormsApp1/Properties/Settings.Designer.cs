@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LojaDeCarro.Properties
+namespace WindowsFormsApp1.Properties
 {
 
 

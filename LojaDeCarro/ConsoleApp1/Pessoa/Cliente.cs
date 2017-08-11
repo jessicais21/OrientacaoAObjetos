@@ -1,4 +1,4 @@
-﻿//namespace utilizado para organização do codigo, pensado no modulo de pessoas
+﻿
 using System;
 
 namespace Cappta.LojaDeCarro.Pessoas
@@ -17,7 +17,9 @@ namespace Cappta.LojaDeCarro.Pessoas
         {
             //valida os campos durante a criação do objeto Cliente - importante para a manutenção do codigo
             //verifica se o rg, não tem espaço em branco e não é vazio e não é nulo. Verifica se o nome não é vazio e não é nulo.
-            if (string.IsNullOrEmpty(rg) || string.IsNullOrWhiteSpace(rg) || string.IsNullOrEmpty(nome))
+            //IsNUllOrWhiteSpace - verificar se só tem espaço em branco, nulo e também inclui a verificação de espaço vazio.
+    
+            if (string.IsNullOrWhiteSpace(rg) || string.IsNullOrWhiteSpace(nome))
             {
                 //lança uma exceção
                 throw new ArgumentNullException();
