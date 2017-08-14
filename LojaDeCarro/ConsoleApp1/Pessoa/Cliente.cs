@@ -4,7 +4,7 @@ using System;
 namespace Cappta.LojaDeCarro.Pessoas
 {
     //cliente é um objeto do sistema porque ele representa quem compra o carro da concessionária.
-    //representa um objeto da realidade que é um cliente
+    //representa um cliente da vida real
     public class Cliente
     {
         //características do objeto cliente que é rg e nome
@@ -22,7 +22,7 @@ namespace Cappta.LojaDeCarro.Pessoas
             if (string.IsNullOrWhiteSpace(rg) || string.IsNullOrWhiteSpace(nome))
             {
                 //lança uma exceção
-                throw new ArgumentNullException();
+                throw new Exception();
             }
 
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.click_cancelar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.corCarroCadastrarVenda = new System.Windows.Forms.TextBox();
             this.click_cadastrar = new System.Windows.Forms.Button();
@@ -75,7 +76,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.click_mostrar = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.click_cancelar = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCarros)).BeginInit();
@@ -108,6 +108,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(261, 378);
             this.panel1.TabIndex = 0;
+            // 
+            // click_cancelar
+            // 
+            this.click_cancelar.Location = new System.Drawing.Point(10, 339);
+            this.click_cancelar.Name = "click_cancelar";
+            this.click_cancelar.Size = new System.Drawing.Size(75, 23);
+            this.click_cancelar.TabIndex = 19;
+            this.click_cancelar.Text = "cancelar";
+            this.click_cancelar.UseVisualStyleBackColor = true;
+            this.click_cancelar.Click += new System.EventHandler(this.click_cancelar_Click);
             // 
             // label10
             // 
@@ -287,9 +297,9 @@
             this.gridViewCarros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridViewCarros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewCarros.Cursor = System.Windows.Forms.Cursors.No;
-            this.gridViewCarros.Location = new System.Drawing.Point(293, 225);
+            this.gridViewCarros.Location = new System.Drawing.Point(293, 214);
             this.gridViewCarros.Name = "gridViewCarros";
-            this.gridViewCarros.Size = new System.Drawing.Size(456, 150);
+            this.gridViewCarros.Size = new System.Drawing.Size(531, 150);
             this.gridViewCarros.TabIndex = 3;
             // 
             // MarcaPesquisar
@@ -450,15 +460,15 @@
             // 
             this.dataGridVendas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridVendas.Location = new System.Drawing.Point(781, 138);
+            this.dataGridVendas.Location = new System.Drawing.Point(74, 445);
             this.dataGridVendas.Name = "dataGridVendas";
-            this.dataGridVendas.Size = new System.Drawing.Size(680, 284);
+            this.dataGridVendas.Size = new System.Drawing.Size(1264, 284);
             this.dataGridVendas.TabIndex = 23;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(781, 13);
+            this.label16.Location = new System.Drawing.Point(1017, 371);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(43, 13);
             this.label16.TabIndex = 24;
@@ -466,7 +476,7 @@
             // 
             // click_todasAsVendas
             // 
-            this.click_todasAsVendas.Location = new System.Drawing.Point(781, 59);
+            this.click_todasAsVendas.Location = new System.Drawing.Point(1020, 392);
             this.click_todasAsVendas.Name = "click_todasAsVendas";
             this.click_todasAsVendas.Size = new System.Drawing.Size(75, 47);
             this.click_todasAsVendas.TabIndex = 25;
@@ -476,7 +486,7 @@
             // 
             // pesquisarPorDataOuHora
             // 
-            this.pesquisarPorDataOuHora.Location = new System.Drawing.Point(922, 91);
+            this.pesquisarPorDataOuHora.Location = new System.Drawing.Point(1121, 417);
             this.pesquisarPorDataOuHora.Name = "pesquisarPorDataOuHora";
             this.pesquisarPorDataOuHora.Size = new System.Drawing.Size(100, 20);
             this.pesquisarPorDataOuHora.TabIndex = 26;
@@ -484,7 +494,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(919, 42);
+            this.label17.Location = new System.Drawing.Point(1118, 371);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(67, 13);
             this.label17.TabIndex = 27;
@@ -492,7 +502,7 @@
             // 
             // click_mostrar
             // 
-            this.click_mostrar.Location = new System.Drawing.Point(1041, 87);
+            this.click_mostrar.Location = new System.Drawing.Point(1263, 410);
             this.click_mostrar.Name = "click_mostrar";
             this.click_mostrar.Size = new System.Drawing.Size(75, 23);
             this.click_mostrar.TabIndex = 28;
@@ -503,21 +513,11 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(919, 69);
+            this.label18.Location = new System.Drawing.Point(1115, 384);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(70, 13);
             this.label18.TabIndex = 29;
             this.label18.Text = "../../../  ..:..:..";
-            // 
-            // click_cancelar
-            // 
-            this.click_cancelar.Location = new System.Drawing.Point(10, 339);
-            this.click_cancelar.Name = "click_cancelar";
-            this.click_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.click_cancelar.TabIndex = 19;
-            this.click_cancelar.Text = "cancelar";
-            this.click_cancelar.UseVisualStyleBackColor = true;
-            this.click_cancelar.Click += new System.EventHandler(this.click_cancelar_Click);
             // 
             // label19
             // 
@@ -532,7 +532,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1475, 452);
+            this.ClientSize = new System.Drawing.Size(1362, 741);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.click_mostrar);
@@ -564,6 +564,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCarros)).EndInit();

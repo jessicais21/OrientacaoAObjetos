@@ -5,10 +5,10 @@ using Cappta.LojaDeCarro.Estoque;
 using Cappta.LojaDeCarro.Pessoas;
 using System;
 
-//namespace utilizado para organização do codigo, pensado no modulo de venda
+
 namespace Cappta.LojaDeCarro.Venda
 {
-    //objeto venda que representa a realidade de uma venda
+    //objeto venda porque representa uma venda da concessionária
 public class Venda
     {
         //características da venda é ter codigo, data e hora, vendedor , cliente e veiculo
@@ -38,16 +38,16 @@ public class Venda
                 ||  cliente==null || veiculo==null){
 
                 //lança uma exceção
-                throw new ArgumentNullException();
+                throw new Exception();
 
             }
 
             else{
-                this.numeroDaVenda = identificadorGeradoDaVenda;
-                this.dataEHorasDaVenda = dataEhora;
-                this.veiculo = veiculo;
+                numeroDaVenda = identificadorGeradoDaVenda;
+                dataEHorasDaVenda = dataEhora;             
+                this.vendedor = vendedor;               
                 this.cliente = cliente;
-                this.vendedor = vendedor;
+                this.veiculo = veiculo;
             }
         }
     }

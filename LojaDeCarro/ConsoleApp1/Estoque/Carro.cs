@@ -1,10 +1,13 @@
-﻿
+﻿//Carro é um objeto porque representa um carro da vida real.
 using System;
+using System.Windows.Forms;
+
 
 namespace Cappta.LojaDeCarro.Estoque
 {
     //representa o objeto Carro , assina com a interface IVeiculo
-   public class Carro : IVeiculo
+    // //Carro é um objeto porque representa um carro da vida real.
+    public class Carro : IVeiculo
     {
         //que tem as características de chassi,marca,modelo, cor, ano e valor
         //utiliza as propriedades get e set
@@ -24,11 +27,10 @@ namespace Cappta.LojaDeCarro.Estoque
             //os valores dos carros é a partir de 1000 reais, por causa dos valores registrados
             if ( string.IsNullOrWhiteSpace(chassi)  || string.IsNullOrWhiteSpace(marca)
                   ||  string.IsNullOrWhiteSpace(modelo)   || string.IsNullOrWhiteSpace(cor) || ano < 1990 || valor < 1000 )
-              {  
-                 //lança uma exceção
-                throw new ArgumentNullException();
-
-              }
+              {
+                //lança uma exceção 
+                throw new Exception();
+            }
 
             else
             {//estes atributos da classe carro representado pelo this, recebe os valores do construtor

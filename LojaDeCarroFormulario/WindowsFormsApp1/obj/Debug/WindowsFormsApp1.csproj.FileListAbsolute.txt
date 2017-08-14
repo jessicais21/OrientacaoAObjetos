@@ -10,3 +10,15 @@ C:\Users\jessica.isis\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\
 C:\Users\jessica.isis\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.exe
 C:\Users\jessica.isis\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.pdb
 C:\Users\jessica.isis\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Jessica\Documents\GitHub\OrientacaoAObjetos\LojaDeCarroFormulario\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb

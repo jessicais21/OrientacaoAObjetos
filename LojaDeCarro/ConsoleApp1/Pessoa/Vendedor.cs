@@ -2,7 +2,7 @@
 
 namespace Cappta.LojaDeCarro.Pessoas
 {
-    //Vendedor é um objeto do sistema, porque ele é um funcionário da concessionária de veículos
+    //Vendedor é um objeto do sistema, porque representa um vendedor da concessionária de veículos
   public class Vendedor 
     {
         //um vendedor tem um nome, então nome é uma característica do vendedor
@@ -15,8 +15,8 @@ namespace Cappta.LojaDeCarro.Pessoas
             //isNullOrEmpty - verifica se tem espaço vazio ou nulo
              if (string.IsNullOrWhiteSpace(nomeRecebido))
            {
-                //lança uma exceção 
-               throw new ArgumentNullException();
+                //lança uma exceção
+                throw new Exception();
              }
 
             //confirma a criação do objeto com referencia ao atributo
@@ -24,6 +24,10 @@ namespace Cappta.LojaDeCarro.Pessoas
             {
                 this.nome = nomeRecebido;
             }
+
+           
+
+           
         }
 
       

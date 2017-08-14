@@ -8,7 +8,7 @@ namespace Cappta.LojaDeCarro.Estoque
 
     //É o controle de produtos, no caso da concessionária é o controle de carros
     //O controle de carros é responsável por adicionar e remover carros do estoque
-    //Para a alteração dos carros no estoque no sistema é utilizado o arquivo 
+  
     public class EstoqueDeCarro
     {
         //cria uma lista de objeto do carro

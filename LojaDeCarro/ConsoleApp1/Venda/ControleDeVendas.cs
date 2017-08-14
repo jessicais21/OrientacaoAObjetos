@@ -14,7 +14,7 @@ namespace Cappta.LojaDeCarro.Venda
 
  
     //É o controle de vendas, é responsável por adicionar e cancelar vendas
-    //Para alterações de venda no sistema é utilizado o arquivo 
+   
     public class ControleDeVendas
     {
         //cria uma lista de objeto venda
