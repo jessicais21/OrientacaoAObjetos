@@ -1,4 +1,4 @@
-﻿
+﻿using System.Windows.Forms;
 using System;
 
 namespace Cappta.LojaDeCarro.Pessoas
@@ -16,13 +16,15 @@ namespace Cappta.LojaDeCarro.Pessoas
         public Cliente(string rg, string nome)
         {
             //valida os campos durante a criação do objeto Cliente - importante para a manutenção do codigo
-            //verifica se o rg, não tem espaço em branco e não é vazio e não é nulo. Verifica se o nome não é vazio e não é nulo.
+            //verifica se o rg e o nome,  tem espaço em branco ou é vazio ou é nulo.
             //IsNUllOrWhiteSpace - verificar se só tem espaço em branco, nulo e também inclui a verificação de espaço vazio.
     
             if (string.IsNullOrWhiteSpace(rg) || string.IsNullOrWhiteSpace(nome))
             {
-                //lança uma exceção
-                throw new Exception();
+                //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado
+                //a exceção é do tipo ArgumentNullException que é a exceção específica para argumentos
+                //o tratamento da exceçao é feito pelo try catch
+                throw new ArgumentNullException("Dados invalidos para o cliente");
             }
 
 

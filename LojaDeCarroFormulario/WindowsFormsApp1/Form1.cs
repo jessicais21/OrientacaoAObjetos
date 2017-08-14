@@ -17,19 +17,20 @@ namespace WindowsFormsApp1
 
         private void click_cadastrar_Click(object sender, EventArgs e)
         {
-           
+            //Vendedor é um objeto porque representa um vendedor da vida real. 
+            //Neste sistema, é o vendedor da concessionária de carros.
             try
             {
-                //Vendedor é um objeto porque representa um vendedor da vida real. 
-                //Neste sistema, é o vendedor da concessionária de carros.
                 Vendedor vendedor = new Vendedor(vendedorNomeCadastrarVenda.Text);
-               
-                //Cliente é um objeto porque representa um cliente da vida real.  
+
+                //Cliente é um objeto porque representa um cliente da concessionária.  
                 Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
 
-                //Carro é um objeto porque representa um carro da vida real.
-                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
-                                        Convert.ToDouble(valorCarroCadastrarVenda.Text));
+                //Carro é um objeto porque representa um carro.
+               
+                    Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
+                                       Convert.ToDouble(valorCarroCadastrarVenda.Text));
+             
 
                 //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
@@ -37,12 +38,13 @@ namespace WindowsFormsApp1
                 MessageBox.Show(confirmacaoDeVenda);
             }
 
-            catch(Exception)
-            {//mostra o resultado da exceção para o usuário
-                MessageBox.Show("Dados invalidos para venda");
+            catch (ArgumentNullException ex)
+            {
+                MessageBox.Show("Exceção sendo geranda "+ex.Message);
             }
+           
 
-          
+            
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -52,11 +54,14 @@ namespace WindowsFormsApp1
 
         private void click_todosOsCarros_Click(object sender, EventArgs e)
         {
-
+          
+           
             //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var listaDeCarros = estoque.listaDeCarro;
             gridViewCarros.DataSource = listaDeCarros;
+
+          
         }
 
         private void click_MostrarMarcas_Click(object sender, EventArgs e)
@@ -66,6 +71,8 @@ namespace WindowsFormsApp1
             var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(MarcaPesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPelaMarca;
 
+          
+
         }
 
         private void click_QuantidadeMarcaMostrar_Click(object sender, EventArgs e)
@@ -74,6 +81,8 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             int retornar = estoque.QuantidadeDeCarroDeAcordoComAMarca(MarcaPesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com a marca é: "+retornar);
+
+         
         }
 
         private void Click_Mostrar_Modelos_Click(object sender, EventArgs e)
@@ -82,6 +91,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modelo_Pesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPeloModelo;
+            
         }
 
         private void click_QuantidadeModelos_Click(object sender, EventArgs e)
@@ -90,7 +100,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             int retornar = estoque.QuantidadeDeCarroDeAcordoComOModelo(modelo_Pesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com o modelo é: " + retornar);
-
+            
         }
 
         private void click_MostrarDeAcordoComACor_Click(object sender, EventArgs e)
@@ -99,6 +109,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(cor_Pesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPelaCor;
+          
         }
 
         private void click_quantidade_carro_corres_Click(object sender, EventArgs e)
@@ -107,6 +118,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var retornar = estoque.QuantidadeDeCarroDeAcordoComACor(cor_Pesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com a cor é: "+retornar);
+          
         }
 
        
@@ -117,6 +129,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPelaCor = estoque.PesquisarCarrosPorAno(Convert.ToInt32(ano_carro_pesquisar.Text));
             gridViewCarros.DataSource = resultadoDaBuscaPelaCor;
+          
         }
 
         private void click_quantidade_cor_Click(object sender, EventArgs e)
@@ -125,6 +138,7 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var retornar = estoque.QuantidadeDeCarroDeAcordoComOAno(Convert.ToInt32(ano_carro_pesquisar.Text));
             MessageBox.Show("a quantidade de carros de acordo com o ano é"+retornar);
+          
         }
 
         private void click_todasAsVendas_Click(object sender, EventArgs e)
@@ -144,8 +158,10 @@ namespace WindowsFormsApp1
             //coluna do data grid view
             dataGridVendas.ColumnCount = 11;
             dataGridVendas.Columns[0].Name = "Numero";
+            dataGridVendas.Columns[0].Width = 50;
             dataGridVendas.Columns[1].Name = "Data e hora";
-            dataGridVendas.Columns[2].Name = "vendedor";
+            dataGridVendas.Columns[1].Width = 120;
+            dataGridVendas.Columns[2].Name = "vendedor";    
             dataGridVendas.Columns[3].Name = "cpf do cliente";
             dataGridVendas.Columns[4].Name = "nome do cliente";
             dataGridVendas.Columns[5].Name = "chassi do carro";
@@ -172,6 +188,47 @@ namespace WindowsFormsApp1
         }
 
         private void click_mostrar_Click(object sender, EventArgs e)
+        {
+            GridViewVendas();
+          
+        }
+
+        private void click_cancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Cliente é um objeto porque representa um cliente da vida real. 
+                Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
+
+                //Carro é um objeto porque representa um carro da vida real.
+                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
+                                        Convert.ToDouble(valorCarroCadastrarVenda.Text));
+
+                //o objeto controle de vendas é responsável por adicionar ou remover vendas.
+                ControleDeVendas controleDeVendas = new ControleDeVendas();
+                string confirmacaoDeCancelamentoDeVenda = controleDeVendas.VerificarDadosParaOCancelamentoDeVenda(cliente, carro);
+
+                MessageBox.Show(confirmacaoDeCancelamentoDeVenda);
+            }
+
+            catch(ArgumentNullException)
+            {
+
+                MessageBox.Show("Dados invalidos");
+            }
+           
+               
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void GridViewVendas()
         {
 
             //então afirma que que dataSource é nulo
@@ -212,35 +269,6 @@ namespace WindowsFormsApp1
                 //escrever em cada linha
                 dataGridVendas.Rows.Add(row);
             }
-
-        }
-
-        private void click_cancelar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //Cliente é um objeto porque representa um cliente da vida real. 
-                Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
-
-                //Carro é um objeto porque representa um carro da vida real.
-                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
-                                        Convert.ToDouble(valorCarroCadastrarVenda.Text));
-
-                //o objeto controle de vendas é responsável por adicionar ou remover vendas.
-                ControleDeVendas controleDeVendas = new ControleDeVendas();
-                string confirmacaoDeCancelamentoDeVenda = controleDeVendas.VerificarDadosParaOCancelamentoDeVenda(cliente, carro);
-
-                MessageBox.Show(confirmacaoDeCancelamentoDeVenda);
-            }
-
-            catch (Exception)
-            {//mostra o resultado da exceção para o usuário
-                MessageBox.Show("Dados invalidos para o cancelamento");
-            }
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
         }
     }

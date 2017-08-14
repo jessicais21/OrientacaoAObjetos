@@ -104,9 +104,9 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.vendedorNomeCadastrarVenda);
-            this.panel1.Location = new System.Drawing.Point(26, 59);
+            this.panel1.Location = new System.Drawing.Point(2, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(261, 378);
+            this.panel1.Size = new System.Drawing.Size(217, 378);
             this.panel1.TabIndex = 0;
             // 
             // click_cancelar
@@ -138,7 +138,7 @@
             // 
             // click_cadastrar
             // 
-            this.click_cadastrar.Location = new System.Drawing.Point(171, 339);
+            this.click_cadastrar.Location = new System.Drawing.Point(108, 339);
             this.click_cadastrar.Name = "click_cadastrar";
             this.click_cadastrar.Size = new System.Drawing.Size(75, 23);
             this.click_cadastrar.TabIndex = 16;
@@ -277,7 +277,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 9);
+            this.label2.Location = new System.Drawing.Point(9, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 1;
@@ -286,7 +286,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(320, 9);
+            this.label11.Location = new System.Drawing.Point(268, 467);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(73, 13);
             this.label11.TabIndex = 2;
@@ -297,31 +297,31 @@
             this.gridViewCarros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridViewCarros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridViewCarros.Cursor = System.Windows.Forms.Cursors.No;
-            this.gridViewCarros.Location = new System.Drawing.Point(293, 214);
+            this.gridViewCarros.Location = new System.Drawing.Point(248, 579);
             this.gridViewCarros.Name = "gridViewCarros";
-            this.gridViewCarros.Size = new System.Drawing.Size(531, 150);
+            this.gridViewCarros.Size = new System.Drawing.Size(683, 150);
             this.gridViewCarros.TabIndex = 3;
             // 
             // MarcaPesquisar
             // 
-            this.MarcaPesquisar.Location = new System.Drawing.Point(412, 42);
+            this.MarcaPesquisar.Location = new System.Drawing.Point(369, 483);
             this.MarcaPesquisar.Name = "MarcaPesquisar";
             this.MarcaPesquisar.Size = new System.Drawing.Size(100, 20);
             this.MarcaPesquisar.TabIndex = 5;
             // 
             // click_MostrarMarcas
             // 
-            this.click_MostrarMarcas.Location = new System.Drawing.Point(518, 42);
+            this.click_MostrarMarcas.Location = new System.Drawing.Point(475, 483);
             this.click_MostrarMarcas.Name = "click_MostrarMarcas";
             this.click_MostrarMarcas.Size = new System.Drawing.Size(75, 23);
             this.click_MostrarMarcas.TabIndex = 6;
-            this.click_MostrarMarcas.Text = "mostrar";
+            this.click_MostrarMarcas.Text = "pesquisar";
             this.click_MostrarMarcas.UseVisualStyleBackColor = true;
             this.click_MostrarMarcas.Click += new System.EventHandler(this.click_MostrarMarcas_Click);
             // 
             // click_QuantidadeMarcaMostrar
             // 
-            this.click_QuantidadeMarcaMostrar.Location = new System.Drawing.Point(599, 44);
+            this.click_QuantidadeMarcaMostrar.Location = new System.Drawing.Point(556, 483);
             this.click_QuantidadeMarcaMostrar.Name = "click_QuantidadeMarcaMostrar";
             this.click_QuantidadeMarcaMostrar.Size = new System.Drawing.Size(75, 23);
             this.click_QuantidadeMarcaMostrar.TabIndex = 7;
@@ -332,7 +332,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(409, 25);
+            this.label12.Location = new System.Drawing.Point(366, 470);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 13);
             this.label12.TabIndex = 8;
@@ -340,7 +340,7 @@
             // 
             // click_todosOsCarros
             // 
-            this.click_todosOsCarros.Location = new System.Drawing.Point(323, 69);
+            this.click_todosOsCarros.Location = new System.Drawing.Point(271, 483);
             this.click_todosOsCarros.Name = "click_todosOsCarros";
             this.click_todosOsCarros.Size = new System.Drawing.Size(75, 49);
             this.click_todosOsCarros.TabIndex = 9;
@@ -351,7 +351,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(412, 69);
+            this.label13.Location = new System.Drawing.Point(366, 519);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(41, 13);
             this.label13.TabIndex = 10;
@@ -359,24 +359,24 @@
             // 
             // modelo_Pesquisar
             // 
-            this.modelo_Pesquisar.Location = new System.Drawing.Point(415, 89);
+            this.modelo_Pesquisar.Location = new System.Drawing.Point(369, 535);
             this.modelo_Pesquisar.Name = "modelo_Pesquisar";
             this.modelo_Pesquisar.Size = new System.Drawing.Size(100, 20);
             this.modelo_Pesquisar.TabIndex = 11;
             // 
             // Click_Mostrar_Modelos
             // 
-            this.Click_Mostrar_Modelos.Location = new System.Drawing.Point(521, 89);
+            this.Click_Mostrar_Modelos.Location = new System.Drawing.Point(475, 532);
             this.Click_Mostrar_Modelos.Name = "Click_Mostrar_Modelos";
             this.Click_Mostrar_Modelos.Size = new System.Drawing.Size(75, 23);
             this.Click_Mostrar_Modelos.TabIndex = 12;
-            this.Click_Mostrar_Modelos.Text = "mostrar";
+            this.Click_Mostrar_Modelos.Text = "pesquisar";
             this.Click_Mostrar_Modelos.UseVisualStyleBackColor = true;
             this.Click_Mostrar_Modelos.Click += new System.EventHandler(this.Click_Mostrar_Modelos_Click);
             // 
             // click_QuantidadeModelos
             // 
-            this.click_QuantidadeModelos.Location = new System.Drawing.Point(603, 90);
+            this.click_QuantidadeModelos.Location = new System.Drawing.Point(556, 533);
             this.click_QuantidadeModelos.Name = "click_QuantidadeModelos";
             this.click_QuantidadeModelos.Size = new System.Drawing.Size(75, 23);
             this.click_QuantidadeModelos.TabIndex = 13;
@@ -387,7 +387,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(412, 121);
+            this.label14.Location = new System.Drawing.Point(666, 470);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(22, 13);
             this.label14.TabIndex = 14;
@@ -395,24 +395,24 @@
             // 
             // cor_Pesquisar
             // 
-            this.cor_Pesquisar.Location = new System.Drawing.Point(415, 138);
+            this.cor_Pesquisar.Location = new System.Drawing.Point(669, 483);
             this.cor_Pesquisar.Name = "cor_Pesquisar";
             this.cor_Pesquisar.Size = new System.Drawing.Size(100, 20);
             this.cor_Pesquisar.TabIndex = 15;
             // 
             // click_MostrarDeAcordoComACor
             // 
-            this.click_MostrarDeAcordoComACor.Location = new System.Drawing.Point(521, 135);
+            this.click_MostrarDeAcordoComACor.Location = new System.Drawing.Point(775, 480);
             this.click_MostrarDeAcordoComACor.Name = "click_MostrarDeAcordoComACor";
             this.click_MostrarDeAcordoComACor.Size = new System.Drawing.Size(75, 23);
             this.click_MostrarDeAcordoComACor.TabIndex = 16;
-            this.click_MostrarDeAcordoComACor.Text = "mostrar";
+            this.click_MostrarDeAcordoComACor.Text = "pesquisar";
             this.click_MostrarDeAcordoComACor.UseVisualStyleBackColor = true;
             this.click_MostrarDeAcordoComACor.Click += new System.EventHandler(this.click_MostrarDeAcordoComACor_Click);
             // 
             // click_quantidade_carro_corres
             // 
-            this.click_quantidade_carro_corres.Location = new System.Drawing.Point(603, 135);
+            this.click_quantidade_carro_corres.Location = new System.Drawing.Point(856, 480);
             this.click_quantidade_carro_corres.Name = "click_quantidade_carro_corres";
             this.click_quantidade_carro_corres.Size = new System.Drawing.Size(75, 23);
             this.click_quantidade_carro_corres.TabIndex = 17;
@@ -423,7 +423,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(412, 166);
+            this.label15.Location = new System.Drawing.Point(666, 519);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(25, 13);
             this.label15.TabIndex = 18;
@@ -431,14 +431,14 @@
             // 
             // ano_carro_pesquisar
             // 
-            this.ano_carro_pesquisar.Location = new System.Drawing.Point(415, 188);
+            this.ano_carro_pesquisar.Location = new System.Drawing.Point(669, 536);
             this.ano_carro_pesquisar.Name = "ano_carro_pesquisar";
             this.ano_carro_pesquisar.Size = new System.Drawing.Size(100, 20);
             this.ano_carro_pesquisar.TabIndex = 19;
             // 
             // click_quantidade_cor
             // 
-            this.click_quantidade_cor.Location = new System.Drawing.Point(604, 187);
+            this.click_quantidade_cor.Location = new System.Drawing.Point(856, 532);
             this.click_quantidade_cor.Name = "click_quantidade_cor";
             this.click_quantidade_cor.Size = new System.Drawing.Size(75, 23);
             this.click_quantidade_cor.TabIndex = 21;
@@ -448,11 +448,11 @@
             // 
             // click_ano_mostrar_carros
             // 
-            this.click_ano_mostrar_carros.Location = new System.Drawing.Point(523, 187);
+            this.click_ano_mostrar_carros.Location = new System.Drawing.Point(775, 532);
             this.click_ano_mostrar_carros.Name = "click_ano_mostrar_carros";
             this.click_ano_mostrar_carros.Size = new System.Drawing.Size(75, 23);
             this.click_ano_mostrar_carros.TabIndex = 22;
-            this.click_ano_mostrar_carros.Text = "mostra";
+            this.click_ano_mostrar_carros.Text = "pesquisar";
             this.click_ano_mostrar_carros.UseVisualStyleBackColor = true;
             this.click_ano_mostrar_carros.Click += new System.EventHandler(this.click_ano_mostrar_carros_Click);
             // 
@@ -460,15 +460,15 @@
             // 
             this.dataGridVendas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridVendas.Location = new System.Drawing.Point(74, 445);
+            this.dataGridVendas.Location = new System.Drawing.Point(225, 111);
             this.dataGridVendas.Name = "dataGridVendas";
-            this.dataGridVendas.Size = new System.Drawing.Size(1264, 284);
+            this.dataGridVendas.Size = new System.Drawing.Size(1167, 284);
             this.dataGridVendas.TabIndex = 23;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1017, 371);
+            this.label16.Location = new System.Drawing.Point(346, 42);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(43, 13);
             this.label16.TabIndex = 24;
@@ -476,7 +476,7 @@
             // 
             // click_todasAsVendas
             // 
-            this.click_todasAsVendas.Location = new System.Drawing.Point(1020, 392);
+            this.click_todasAsVendas.Location = new System.Drawing.Point(332, 58);
             this.click_todasAsVendas.Name = "click_todasAsVendas";
             this.click_todasAsVendas.Size = new System.Drawing.Size(75, 47);
             this.click_todasAsVendas.TabIndex = 25;
@@ -486,7 +486,7 @@
             // 
             // pesquisarPorDataOuHora
             // 
-            this.pesquisarPorDataOuHora.Location = new System.Drawing.Point(1121, 417);
+            this.pesquisarPorDataOuHora.Location = new System.Drawing.Point(475, 80);
             this.pesquisarPorDataOuHora.Name = "pesquisarPorDataOuHora";
             this.pesquisarPorDataOuHora.Size = new System.Drawing.Size(100, 20);
             this.pesquisarPorDataOuHora.TabIndex = 26;
@@ -494,7 +494,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(1118, 371);
+            this.label17.Location = new System.Drawing.Point(472, 42);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(67, 13);
             this.label17.TabIndex = 27;
@@ -502,18 +502,18 @@
             // 
             // click_mostrar
             // 
-            this.click_mostrar.Location = new System.Drawing.Point(1263, 410);
+            this.click_mostrar.Location = new System.Drawing.Point(581, 78);
             this.click_mostrar.Name = "click_mostrar";
             this.click_mostrar.Size = new System.Drawing.Size(75, 23);
             this.click_mostrar.TabIndex = 28;
-            this.click_mostrar.Text = "mostrar";
+            this.click_mostrar.Text = "pesquisar";
             this.click_mostrar.UseVisualStyleBackColor = true;
             this.click_mostrar.Click += new System.EventHandler(this.click_mostrar_Click);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1115, 384);
+            this.label18.Location = new System.Drawing.Point(472, 59);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(70, 13);
             this.label18.TabIndex = 29;
@@ -522,7 +522,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(33, 42);
+            this.label19.Location = new System.Drawing.Point(0, 59);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(210, 13);
             this.label19.TabIndex = 30;
@@ -532,7 +532,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1393, 741);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.click_mostrar);

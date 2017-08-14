@@ -70,7 +70,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //var é o tipo StreamWriter, pois o seu tipo é criado posteriormente ao sinal =
             using (var arquivo = new StreamWriter(arquivoDoEstoque))
             {
-                //escreve cada elemento da lista de carros no arquivo. Recebe o atributo listaDeCarro.
+                //escreve cada elemento da lista de carros no arquivo. 
                 foreach (var listarCarros in this.listaDeCarro)
                 {
                     arquivo.WriteLine(listarCarros.chassi + "," + listarCarros.marca + "," + listarCarros.modelo + "," + listarCarros.cor + "," + listarCarros.ano + "," + listarCarros.valor);

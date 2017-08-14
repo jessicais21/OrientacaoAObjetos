@@ -22,14 +22,16 @@ namespace Cappta.LojaDeCarro.Estoque
         public Carro(string chassi, string marca, string modelo, string cor,int ano, double valor)
         {
             //valida os campos durante a criação do objeto Carro
-            //verifica se o chassi, marca, modelo, cor, ano e valor, não tem espaço em branco e não é vazio e não é nulo
+            //verifica se o chassi, marca, modelo, cor, ano e valor,  tem espaço em branco ou  é vazio ou é nulo
             //ano maior que 1990 porque a empresa existe mais de 20 anos e os carros registrados é a partir do ano de 1990
             //os valores dos carros é a partir de 1000 reais, por causa dos valores registrados
             if ( string.IsNullOrWhiteSpace(chassi)  || string.IsNullOrWhiteSpace(marca)
-                  ||  string.IsNullOrWhiteSpace(modelo)   || string.IsNullOrWhiteSpace(cor) || ano < 1990 || valor < 1000 )
+                  ||  string.IsNullOrWhiteSpace(modelo) || string.IsNullOrWhiteSpace(cor) || string.IsNullOrWhiteSpace(ano.ToString()) || string.IsNullOrWhiteSpace(valor.ToString()) )
               {
-                //lança uma exceção 
-                throw new Exception();
+                //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado
+                //a exceção é do tipo ArgumentNullException que é a exceção específica para argumentos
+                //o tratamento da exceçao é feito pelo try catch
+                throw new ArgumentNullException("Dados invalidos para o carro");
             }
 
             else

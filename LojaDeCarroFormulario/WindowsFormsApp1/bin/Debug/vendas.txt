@@ -7,3 +7,7 @@
 14,10/08/2017 11:25:33,vendedor,123,nome,111,Fiat,Uno,azul,2012,3500
 16,11/08/2017 15:36:27,vendedor,123,nome,100,Fiat,Uno,amarelo,2012,3000
 17,13/08/2017 23:53:11,nome,343,nome,10,Ford,Fiesta,preto,2016,3234
+18,14/08/2017 11:10:22,nome,123,nome,4,Fiat,Strada,amarelo,2012,3500
+20,14/08/2017 11:57:40,nom,123,nome,250,Fiat,Uno,azul,2010,1000
+21,14/08/2017 12:16:18,vendedor,123,cliente,32,Fiat,Strada,cinza,2017,60000
+22,14/08/2017 12:20:34,vendedor,123456,cliente,150,Volkswagen,Uno,azul,2015,2500

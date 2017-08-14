@@ -12,9 +12,7 @@ using System;
 namespace Cappta.LojaDeCarro.Venda
 {
 
- 
     //É o controle de vendas, é responsável por adicionar e cancelar vendas
-   
     public class ControleDeVendas
     {
         //cria uma lista de objeto venda
@@ -69,20 +67,20 @@ namespace Cappta.LojaDeCarro.Venda
                     var anoDoCarro = Int32.Parse(quebra[9]);
                     var valorDoCarro = Convert.ToDouble(quebra[10]);
 
-                    //cria o objeto vendedor com as características, porque representa um vendedor da vida real
-                    Vendedor vendedor = new Vendedor(nomeDoVendedor);
+                       //cria o objeto vendedor com as características, porque representa um vendedor da vida real
+                        Vendedor vendedor = new Vendedor(nomeDoVendedor);
 
-                    //cria o objeto cliente com as características, representa um cliente na vida real
-                    Cliente cliente = new Cliente(rg, nomeDoCliente);
+                        //cria o objeto cliente com as características, representa um cliente na vida real
+                        Cliente cliente = new Cliente(rg, nomeDoCliente);
 
-                    //cria o objeto carro com as características, porque representa um carro na vida real
-                    Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
- 
-                    //cria o objeto venda com as características que utiliza os objetos vendedor, carro e cliente
-                    Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
+                        //cria o objeto carro com as características, porque representa um carro na vida real
+                        Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
 
-                    listaDeVenda.Add(venda);
+                        //cria o objeto venda com as características que utiliza os objetos vendedor, carro e cliente
+                        Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
 
+                        listaDeVenda.Add(venda);
+                   
                 }
             }
 
@@ -119,6 +117,7 @@ namespace Cappta.LojaDeCarro.Venda
         //verificar dados para efetuar a venda da venda
         public string VerificarDadosParaEfetuarVenda (Vendedor vendedor, Cliente cliente, Carro carro)
         {
+           
             //cria do objeto estoque de carro, responsável por fazer o controle de carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             //verifica se o carro existe no estoque
@@ -132,16 +131,19 @@ namespace Cappta.LojaDeCarro.Venda
                 //gera o numero identificador para criação da venda
                 int Numeroidentificador = GerarIdentificadorDaVenda();
                 //representa o objeto da vida real venda
-                Venda venda = new Venda(Numeroidentificador, localDate, vendedor, cliente, carro);
-                AdicionarVendas(venda);
-                return "Venda efetuada com sucesso";
-            }
+               
+                    Venda venda = new Venda(Numeroidentificador, localDate, vendedor, cliente, carro);
+                    AdicionarVendas(venda);
 
+                return "venda efetuada com sucesso";
+
+            }
 
             else
             {
-                return "O carro digitado não pertence ao estoque";
+                return "não foram confirmados os dados para efetuar a venda";
             }
+          
         }
 
         //gera o identificador da proxima venda, para a criação do objeto venda
@@ -184,7 +186,7 @@ namespace Cappta.LojaDeCarro.Venda
 
             else
             {
-                return "dados incorretos para o cancelamento";
+                return "não foram encontrados os dados para o cancelamento";
             }
 
           

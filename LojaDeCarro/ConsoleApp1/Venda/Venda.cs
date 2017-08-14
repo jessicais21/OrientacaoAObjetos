@@ -4,7 +4,7 @@ using Cappta.LojaDeCarro.Estoque;
 //namespace utilizado para organização do codigo, pensado no modulo de pessoas
 using Cappta.LojaDeCarro.Pessoas;
 using System;
-
+using System.Windows.Forms;
 
 namespace Cappta.LojaDeCarro.Venda
 {
@@ -37,9 +37,10 @@ public class Venda
             if (identificadorGeradoDaVenda < 0 || dataEhora==null ||vendedor==null 
                 ||  cliente==null || veiculo==null){
 
-                //lança uma exceção
-                throw new Exception();
-
+                //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado
+                //a exceção é do tipo ArgumentNullException que é a exceção específica para argumentos
+                //o tratamento da exceçao é feito pelo try catch
+                throw new ArgumentNullException("dados invalidos para a venda");
             }
 
             else{
