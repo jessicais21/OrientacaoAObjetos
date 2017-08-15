@@ -84,6 +84,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.click_cancelar);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.corCarroCadastrarVenda);
@@ -104,7 +105,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.vendedorNomeCadastrarVenda);
-            this.panel1.Location = new System.Drawing.Point(2, 78);
+            this.panel1.Location = new System.Drawing.Point(2, 89);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(217, 378);
             this.panel1.TabIndex = 0;
@@ -563,7 +564,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Formulario do vendedor";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

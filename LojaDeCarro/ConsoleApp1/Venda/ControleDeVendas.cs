@@ -28,7 +28,7 @@ namespace Cappta.LojaDeCarro.Venda
         // o construtor chama a função PreencherListaDeVendas
         public ControleDeVendas()
         {//a função é responsável por preencher a lista de vendas
-            PreencherListaDeVendas();
+                PreencherListaDeVendas();
         }
 
         //é responsável por preencher a lista de vendas

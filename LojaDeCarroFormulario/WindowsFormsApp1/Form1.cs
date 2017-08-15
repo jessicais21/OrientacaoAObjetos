@@ -2,8 +2,6 @@
 using Cappta.LojaDeCarro.Pessoas;
 using Cappta.LojaDeCarro.Venda;
 using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -17,20 +15,19 @@ namespace WindowsFormsApp1
 
         private void click_cadastrar_Click(object sender, EventArgs e)
         {
-            //Vendedor é um objeto porque representa um vendedor da vida real. 
-            //Neste sistema, é o vendedor da concessionária de carros.
+           
             try
-            {
+            { //Vendedor é um objeto porque representa um vendedor da vida real. 
+              //Neste sistema, é o vendedor da concessionária de carros.
                 Vendedor vendedor = new Vendedor(vendedorNomeCadastrarVenda.Text);
 
                 //Cliente é um objeto porque representa um cliente da concessionária.  
                 Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
 
-                //Carro é um objeto porque representa um carro.
-               
-                    Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
+                //Carro é um objeto porque representa um carro. 
+               Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
                                        Convert.ToDouble(valorCarroCadastrarVenda.Text));
-             
+              
 
                 //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
@@ -38,13 +35,18 @@ namespace WindowsFormsApp1
                 MessageBox.Show(confirmacaoDeVenda);
             }
 
+            //Exceção gerada durante a criação do objeto
             catch (ArgumentNullException ex)
             {
-                MessageBox.Show("Exceção sendo geranda "+ex.Message);
+                MessageBox.Show("Erro nos dados de: "+ex.Message);
             }
-           
 
-            
+            //Exceção geranda que os valores ainda não foram convertidos para a criação do objeto carro
+            catch (FormatException)
+            {
+                MessageBox.Show("Insira os valores nos formatos corretos");
+            }
+
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -54,14 +56,10 @@ namespace WindowsFormsApp1
 
         private void click_todosOsCarros_Click(object sender, EventArgs e)
         {
-          
-           
             //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var listaDeCarros = estoque.listaDeCarro;
             gridViewCarros.DataSource = listaDeCarros;
-
-          
         }
 
         private void click_MostrarMarcas_Click(object sender, EventArgs e)
@@ -70,8 +68,6 @@ namespace WindowsFormsApp1
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(MarcaPesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPelaMarca;
-
-          
 
         }
 
@@ -211,13 +207,18 @@ namespace WindowsFormsApp1
                 MessageBox.Show(confirmacaoDeCancelamentoDeVenda);
             }
 
-            catch(ArgumentNullException)
+            //Exceção gerada durante a criação do objeto
+            catch (ArgumentNullException ex)
             {
-
-                MessageBox.Show("Dados invalidos");
+                MessageBox.Show("Dados invalidos: " +ex.Message);
             }
-           
-               
+
+            //Exceção geranda que os valores ainda não foram convertidos para a criação do objeto carro
+            catch (FormatException)
+            {
+                MessageBox.Show("Insira os valores nos formatos corretos");
+            }
+
 
         }
 

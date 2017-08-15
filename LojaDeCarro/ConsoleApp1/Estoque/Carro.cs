@@ -1,6 +1,5 @@
-﻿//Carro é um objeto porque representa um carro da vida real.
+﻿
 using System;
-using System.Windows.Forms;
 
 
 namespace Cappta.LojaDeCarro.Estoque
@@ -19,14 +18,16 @@ namespace Cappta.LojaDeCarro.Estoque
         public double valor { get; set; }
 
         //construtor da classe carro, que exige que quando o objeto seja criado seja enviado alguns valores.
+        //valores 
         public Carro(string chassi, string marca, string modelo, string cor,int ano, double valor)
         {
             //valida os campos durante a criação do objeto Carro
             //verifica se o chassi, marca, modelo, cor, ano e valor,  tem espaço em branco ou  é vazio ou é nulo
             //ano maior que 1990 porque a empresa existe mais de 20 anos e os carros registrados é a partir do ano de 1990
             //os valores dos carros é a partir de 1000 reais, por causa dos valores registrados
-            if ( string.IsNullOrWhiteSpace(chassi)  || string.IsNullOrWhiteSpace(marca)
-                  ||  string.IsNullOrWhiteSpace(modelo) || string.IsNullOrWhiteSpace(cor) || string.IsNullOrWhiteSpace(ano.ToString()) || string.IsNullOrWhiteSpace(valor.ToString()) )
+            //verifica se o ano(int) e o valor(double) é o mesmo valor por default
+            if ( string.IsNullOrWhiteSpace(chassi)  || string.IsNullOrWhiteSpace(marca) ||  string.IsNullOrWhiteSpace(modelo) ||
+                string.IsNullOrWhiteSpace(cor) || ano.Equals(0)  || valor.Equals(0.0D))
               {
                 //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado
                 //a exceção é do tipo ArgumentNullException que é a exceção específica para argumentos

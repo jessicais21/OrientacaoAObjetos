@@ -1,4 +1,4 @@
-﻿//namespace para organização do codigo. 
+﻿
 namespace Cappta.LojaDeCarro.Estoque
 {
     //usar a interface é um contrato, não é uma classe.

@@ -4,7 +4,7 @@ using Cappta.LojaDeCarro.Estoque;
 //namespace utilizado para organização do codigo, pensado no modulo de pessoas
 using Cappta.LojaDeCarro.Pessoas;
 using System;
-using System.Windows.Forms;
+
 
 namespace Cappta.LojaDeCarro.Venda
 {
@@ -34,8 +34,8 @@ public class Venda
             //IsNUllOrWhiteSpace - verificar se tem espaço em branco e também inclui a verificação de espaço vazio.
             //isNullOrEmpty - verifica se tem espaço vazio ou nulo
             //verifica se as referencias dos tipos DataEhora, vendedor, cliente e veiculo
-            if (identificadorGeradoDaVenda < 0 || dataEhora==null ||vendedor==null 
-                ||  cliente==null || veiculo==null){
+            //verifica se o identificadorGeradoDaVenda está com o valor de int de default
+            if (identificadorGeradoDaVenda.Equals(0) || dataEhora == null ||vendedor == null ||  cliente == null || veiculo == null){
 
                 //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado
                 //a exceção é do tipo ArgumentNullException que é a exceção específica para argumentos

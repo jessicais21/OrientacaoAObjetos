@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using System;
+﻿using System;
 
 namespace Cappta.LojaDeCarro.Pessoas
 {
@@ -18,7 +17,6 @@ namespace Cappta.LojaDeCarro.Pessoas
             //valida os campos durante a criação do objeto Cliente - importante para a manutenção do codigo
             //verifica se o rg e o nome,  tem espaço em branco ou é vazio ou é nulo.
             //IsNUllOrWhiteSpace - verificar se só tem espaço em branco, nulo e também inclui a verificação de espaço vazio.
-    
             if (string.IsNullOrWhiteSpace(rg) || string.IsNullOrWhiteSpace(nome))
             {
                 //gerou uma exceção, porque o valor digitado pelo usuário não foi de acordo com o esperado

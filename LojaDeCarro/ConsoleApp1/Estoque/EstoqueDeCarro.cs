@@ -119,7 +119,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca de ano  
-            int quantidade = listaDeCarro.Count(carro => carro.ano == ano);
+            int quantidade = listaDeCarro.Count(carro => carro.ano.Equals(ano));
 
             return quantidade;
         }
@@ -129,7 +129,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca de ano  
-            int quantidade = listaDeCarro.Count(carro => carro.cor == cor);
+            int quantidade = listaDeCarro.Count(carro => carro.cor.Equals(cor));
 
             return quantidade;
         }
@@ -219,7 +219,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido do ano de carros
-            List<Carro> listaDeCarroPorAno = listaDeCarro.FindAll(carro => carro.ano==ano);
+            List<Carro> listaDeCarroPorAno = listaDeCarro.FindAll(carro => carro.ano.Equals(ano));
 
             return listaDeCarroPorAno;
         }
