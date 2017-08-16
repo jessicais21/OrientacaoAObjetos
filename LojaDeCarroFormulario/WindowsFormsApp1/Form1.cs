@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
 
         private void click_cadastrar_Click(object sender, EventArgs e)
         {
-           
             try
             { //Vendedor é um objeto porque representa um vendedor da vida real. 
               //Neste sistema, é o vendedor da concessionária de carros.
@@ -23,10 +22,28 @@ namespace WindowsFormsApp1
 
                 //Cliente é um objeto porque representa um cliente da concessionária.  
                 Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
+ 
+                int anoCarro;
+                //converte um valor de um txt para um int, e retorna se a operação foi bem-sucedida.
+                bool resultadoAnoCarro = int.TryParse(anoCarroCadastrarVenda.Text, out anoCarro);
+
+         
+                if(resultadoAnoCarro == false) {                 
+                    throw new FormatException("ano invalido");
+                }
+
+                double valorCarro;
+
+                //converte um valor de um txt para um double, e retorna se a operação foi bem-sucedida.
+                bool resultadoValorCarro = double.TryParse(valorCarroCadastrarVenda.Text, out valorCarro);
+
+                if (resultadoValorCarro == false)
+                {
+                    throw new FormatException("valor invalido");
+                }
 
                 //Carro é um objeto porque representa um carro. 
-               Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
-                                       Convert.ToDouble(valorCarroCadastrarVenda.Text));
+                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text,anoCarro, valorCarro);
               
 
                 //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
@@ -42,9 +59,9 @@ namespace WindowsFormsApp1
             }
 
             //Exceção geranda que os valores ainda não foram convertidos para a criação do objeto carro
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                MessageBox.Show("Insira os valores nos formatos corretos");
+                MessageBox.Show("Insira os valores nos formatos corretos " + ex.Message);
             }
 
         }
@@ -193,12 +210,29 @@ namespace WindowsFormsApp1
         {
             try
             {
-                //Cliente é um objeto porque representa um cliente da vida real. 
+                //Cliente é um objeto porque representa um cliente da co. 
                 Cliente cliente = new Cliente(clienteRgCadastrarVenda.Text, nomeClienteCadastrarVenda.Text);
 
+                int anoCarro;
+                //converte um valor de um txt para um int, e retorna se a operação foi bem-sucedida
+                bool resultadoAnoCarro = int.TryParse(anoCarroCadastrarVenda.Text, out anoCarro);
+
+                if (resultadoAnoCarro == false)
+                {
+                    throw new FormatException("ano invalido");
+                }
+
+                double valorCarro;
+                //converte um valor de um txt para um double, e retorna se a operação foi bem-sucedida.
+                bool resultadoValorCarro = double.TryParse(valorCarroCadastrarVenda.Text, out valorCarro);
+               
+                if (resultadoValorCarro == false)
+                {
+                    throw new FormatException("valor invalido");
+                }
+
                 //Carro é um objeto porque representa um carro da vida real.
-                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text, Convert.ToInt32(anoCarroCadastrarVenda.Text),
-                                        Convert.ToDouble(valorCarroCadastrarVenda.Text));
+                Carro carro = new Carro(chassiCarroCadastrarVenda.Text, marcaCarroCadastrarVenda.Text, modeloCarroCadastrarVenda.Text, corCarroCadastrarVenda.Text,anoCarro,valorCarro);
 
                 //o objeto controle de vendas é responsável por adicionar ou remover vendas.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
@@ -214,9 +248,9 @@ namespace WindowsFormsApp1
             }
 
             //Exceção geranda que os valores ainda não foram convertidos para a criação do objeto carro
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                MessageBox.Show("Insira os valores nos formatos corretos");
+                MessageBox.Show("Insira os valores nos formatos corretos" +ex.Message);
             }
 
 
