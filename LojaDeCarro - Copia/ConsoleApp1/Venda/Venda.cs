@@ -1,4 +1,7 @@
-﻿using Cappta.LojaDeCarro.Estoque;
+﻿
+//namespace utilizado para organização do codigo, pensado no modulo de estoque
+using Cappta.LojaDeCarro.Estoque;
+//namespace utilizado para organização do codigo, pensado no modulo de pessoas
 using Cappta.LojaDeCarro.Pessoas;
 using System;
 

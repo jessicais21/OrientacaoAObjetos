@@ -1,10 +1,10 @@
-﻿
+﻿//coleção de um mesmo tipo de dado
 using System.Collections.Generic;
-
+//utiliza as classes pertencentes ao namespace Cappta.LojaDeCarro.Pessoas
 using Cappta.LojaDeCarro.Pessoas;
-
+//utiliza as classes pertencentes ao namespace Cappta.LojaDeCarro.Estoque
 using Cappta.LojaDeCarro.Estoque;
-
+//responsável pela utilização das funções do LINQ
 using System.Linq;
 using System.IO;
 using System;
@@ -36,7 +36,7 @@ namespace Cappta.LojaDeCarro.Venda
         public void PreencherListaDeVendas()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
-            using (StreamReader arquivo = new StreamReader(arquivoDeVendas))
+            using (var arquivo = new StreamReader(arquivoDeVendas))
             {
                 string line;
 
@@ -52,20 +52,20 @@ namespace Cappta.LojaDeCarro.Venda
 
                     string[] quebra = line.Split(',');
 
-                    int identificadorDaVenda = Int32.Parse(quebra[0]);
-                    DateTime dataDaVenda = Convert.ToDateTime(quebra[1]);
+                    var identificadorDaVenda = Int32.Parse(quebra[0]);
+                    var dataDaVenda = Convert.ToDateTime(quebra[1]);
 
-                    string nomeDoVendedor = quebra[2];
+                    var nomeDoVendedor = quebra[2];
 
-                    string rg = quebra[3];
-                    string nomeDoCliente = quebra[4];
+                    var rg = quebra[3];
+                    var nomeDoCliente = quebra[4];
 
-                    string chassi = quebra[5];
-                    string marcaDoCarro = quebra[6];
-                    string modeloDoCarro = quebra[7];
-                    string cor = quebra[8];
-                    int anoDoCarro = Int32.Parse(quebra[9]);
-                    double valorDoCarro = Convert.ToDouble(quebra[10]);
+                    var chassi = quebra[5];
+                    var marcaDoCarro = quebra[6];
+                    var modeloDoCarro = quebra[7];
+                    var cor = quebra[8];
+                    var anoDoCarro = Int32.Parse(quebra[9]);
+                    var valorDoCarro = Convert.ToDouble(quebra[10]);
 
                        //cria o objeto vendedor com as características, porque representa um vendedor da vida real
                         Vendedor vendedor = new Vendedor(nomeDoVendedor);
@@ -91,18 +91,15 @@ namespace Cappta.LojaDeCarro.Venda
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco mesmo quando uma exceção é lançada pelo código.
             //var é o tipo StreamWriter, pois o seu tipo é criado posteriormente ao sinal =
-            using (StreamWriter arquivo = new StreamWriter(arquivoDeVendas))
+            using (var arquivo = new StreamWriter(arquivoDeVendas))
             {
                 //percorre o conjunto de dados e passar um por um
                 //recebe a lista de venda atualizadas e escreve no arquivo
-                foreach (Venda listarVendas in listaDeVenda)
+                foreach (var listarVendas in this.listaDeVenda)
                 {
-                
-                    //formatar uma cadeira de caracteres e coloca em uma string
-                    string escreverNoArquivoDeVenda = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}", listarVendas.numeroDaVenda,listarVendas.dataEHorasDaVenda, listarVendas.vendedor.nome, 
-                                                                    listarVendas.cliente.rg,listarVendas.cliente.nome, listarVendas.veiculo.chassi,listarVendas.veiculo.marca,listarVendas.veiculo.modelo,
-                                                                    listarVendas.veiculo.cor,listarVendas.veiculo.ano,listarVendas.veiculo.valor);
-                    arquivo.WriteLine(escreverNoArquivoDeVenda);
+                    arquivo.WriteLine(listarVendas.numeroDaVenda + "," + listarVendas.dataEHorasDaVenda + ',' + listarVendas.vendedor.nome + "," + listarVendas.cliente.rg + "," + listarVendas.cliente.nome + ","
+                                     + listarVendas.veiculo.chassi + "," + listarVendas.veiculo.marca + "," + listarVendas.veiculo.modelo + "," + listarVendas.veiculo.cor +
+                                     "," + listarVendas.veiculo.ano + "," + listarVendas.veiculo.valor);
                 }
             }
 
@@ -120,7 +117,7 @@ namespace Cappta.LojaDeCarro.Venda
         //verificar dados para efetuar a venda da venda
         public string VerificarDadosParaEfetuarVenda (Vendedor vendedor, Cliente cliente, Carro carro)
         {
-            string retornar = "";  
+           
             //cria do objeto estoque de carro, responsável por fazer o controle de carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             //verifica se o carro existe no estoque
@@ -138,15 +135,13 @@ namespace Cappta.LojaDeCarro.Venda
                     Venda venda = new Venda(Numeroidentificador, localDate, vendedor, cliente, carro);
                     AdicionarVendas(venda);
 
-                retornar = "venda efetuada com sucesso";
-                return retornar;
+                return "venda efetuada com sucesso";
 
             }
 
             else
             {
-                retornar = "não foram confirmados os dados para efetuar a venda";
-                return retornar;
+                return "não foram confirmados os dados para efetuar a venda";
             }
           
         }
@@ -159,7 +154,7 @@ namespace Cappta.LojaDeCarro.Venda
             //utilizacao do OrderByDescending do LINQ, então ele pega a ordem descendente de um determinado campo
             //utiliza o Lambda para detectar o ultimo codigo da lista de vendas
             //pega o ultimo elemento da lista e coloca como primeiro
-            Venda ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.numeroDaVenda).First();
+            var ultimoRegistroDoCodigo = listaDeVenda.OrderByDescending(venda => venda.numeroDaVenda).First();
 
             //gera o identificador e adiciona mais um no ultimo codigo da venda
             int gerarIdentificador = ultimoRegistroDoCodigo.numeroDaVenda + 1;
@@ -171,8 +166,6 @@ namespace Cappta.LojaDeCarro.Venda
         //retorna se é valida ou não as informações do objeto venda
         public string VerificarDadosParaOCancelamentoDeVenda(Cliente cliente, Carro carro)
         {
-            string retornarCancelamentoDeVenda = "";
-
             //método que verifica na lista de vendas e retorna se encontrou a venda, utiliza o método Exists
             //utiliza a função anônima para comparar cada venda pertencente a lista de vendas de acordo com o critério de busca recebido do objeto carro e cliente
             bool verificarVenda = listaDeVenda.Exists(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome)
@@ -188,15 +181,12 @@ namespace Cappta.LojaDeCarro.Venda
                 //adiciona no estoque de carros que é o objeto responsável por controlar os carros
                 EstoqueDeCarro estoque = new EstoqueDeCarro();
                 estoque.AdicionarCarros(carro);
-                retornarCancelamentoDeVenda = "cancelamento efetuado com sucesso";
-                return retornarCancelamentoDeVenda;
+                return "cancelamento efetuado com sucesso";
             }
 
             else
             {
-             
-                retornarCancelamentoDeVenda = "não foram encontrados os dados para o cancelamento";
-                return retornarCancelamentoDeVenda;
+                return "não foram encontrados os dados para o cancelamento";
             }
 
           
@@ -210,7 +200,7 @@ namespace Cappta.LojaDeCarro.Venda
             //First para buscar somente o primeiro e unico elemento
             //utiliza a função anônima para comparar cada carro pertencente a lista de vendas 
             // de acordo com o critério de busca recebido do objeto vendas
-            Venda removerAVenda = listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome) &&
+            var removerAVenda = listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome) &&
                     venda.veiculo.chassi.Equals(carro.chassi) &&
                     venda.veiculo.marca.Equals(carro.marca) && venda.veiculo.modelo.Equals(carro.modelo) &&
                     venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
@@ -237,12 +227,6 @@ namespace Cappta.LojaDeCarro.Venda
                 List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHorasDaVenda.ToString().Contains(dataOuHora));
                 return listaDeBuscaDeVendas;
       
-        }
-
-        public List<Venda> BuscarPorRg(string Rg)
-        {
-            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.cliente.rg.Equals(Rg));
-            return listaDeBuscaDeVendas;
         }
     }
 

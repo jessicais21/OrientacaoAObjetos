@@ -2,7 +2,8 @@
 
 namespace Cappta.LojaDeCarro.Pessoas
 {
-   
+    //cliente é um objeto do sistema porque ele representa quem compra o carro da concessionária.
+    //representa um cliente da vida real
     public class Cliente
     {
         //características do objeto cliente que é rg e nome

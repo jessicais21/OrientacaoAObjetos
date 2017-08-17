@@ -1,9 +1,11 @@
-﻿using System;
+﻿
+using System;
 
 
 namespace Cappta.LojaDeCarro.Estoque
 {
     //representa o objeto Carro , assina com a interface IVeiculo
+    // //Carro é um objeto porque representa um carro da vida real.
     public class Carro : IVeiculo
     {
         //que tem as características de chassi,marca,modelo, cor, ano e valor

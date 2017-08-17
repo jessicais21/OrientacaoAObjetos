@@ -32,7 +32,7 @@ namespace Cappta.LojaDeCarro.Estoque
         public void PreencherListaEstoqueDeCarro()
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco 
-            using (StreamReader arquivo = new StreamReader(arquivoDoEstoque))
+            using (var arquivo = new StreamReader(arquivoDoEstoque))
             {
                 string line;
 
@@ -47,12 +47,12 @@ namespace Cappta.LojaDeCarro.Estoque
                     }
 
                     string[] quebra = line.Split(',');
-                    string identificador = quebra[0];
-                    string marca = quebra[1];
-                    string modelo = quebra[2];
-                    string cor = quebra[3];
-                    int ano = Int32.Parse(quebra[4]);
-                    double valor = Convert.ToDouble(quebra[5]);
+                    var identificador = quebra[0];
+                    var marca = quebra[1];
+                    var modelo = quebra[2];
+                    var cor = quebra[3];
+                    var ano = Int32.Parse(quebra[4]);
+                    var valor = Convert.ToDouble(quebra[5]);
 
                     //cria o objeto carro com as características
                     Carro carro = new Carro(identificador, marca, modelo, cor, ano, valor);
@@ -68,14 +68,12 @@ namespace Cappta.LojaDeCarro.Estoque
         {
             //O using automaticamente fecha os arquivos utilizados dentro do bloco
             //var é o tipo StreamWriter, pois o seu tipo é criado posteriormente ao sinal =
-            using (StreamWriter arquivo = new StreamWriter(arquivoDoEstoque))
+            using (var arquivo = new StreamWriter(arquivoDoEstoque))
             {
                 //escreve cada elemento da lista de carros no arquivo. 
-                foreach (Carro carro in listaDeCarro)
+                foreach (var listarCarros in this.listaDeCarro)
                 {
-                    //formata uma cadeia de caracteres e coloca em uma string
-                    string escreverNoArquivoDeCarro = string.Format("{0},{1},{2},{3},{4},{5}",carro.chassi,carro.marca,carro.modelo,carro.cor,carro.ano,carro.valor);
-                    arquivo.WriteLine(escreverNoArquivoDeCarro);
+                    arquivo.WriteLine(listarCarros.chassi + "," + listarCarros.marca + "," + listarCarros.modelo + "," + listarCarros.cor + "," + listarCarros.ano + "," + listarCarros.valor);
                 }
             }
         }
@@ -94,14 +92,10 @@ namespace Cappta.LojaDeCarro.Estoque
         //somente para saber de acordo com o critério da busca
         public int QuantidadeDeCarroDeAcordoComAMarca( string marca)
         {
-
-            //converter a busca da marca para minusculo porque os dados inseridos são minusculos
-            string buscarPorMarca = marca.ToLower();
-
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca de marca
-            int quantidade = listaDeCarro.Count(carro => carro.marca.Equals(buscarPorMarca));
+            int quantidade = listaDeCarro.Count(carro => carro.marca.Equals(marca));
 
             return quantidade;
         }
@@ -110,13 +104,10 @@ namespace Cappta.LojaDeCarro.Estoque
         //somente para saber de acordo com o critério da busca
         public int QuantidadeDeCarroDeAcordoComOModelo(string modelo)
         {
-            //converter a busca do modelo para minusculo porque os dados inseridos são minusculos
-            string buscarPorModelo = modelo.ToLower();
-
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca modelo 
-            int quantidade = listaDeCarro.Count(carro => carro.modelo.Equals(buscarPorModelo));
+            int quantidade = listaDeCarro.Count(carro => carro.modelo.Equals(modelo));
 
             return quantidade;
         }
@@ -135,9 +126,6 @@ namespace Cappta.LojaDeCarro.Estoque
 
         public int QuantidadeDeCarroDeAcordoComACor(string cor)
         {
-            //converter a busca da cor para minusculo porque os dados inseridos são minusculos
-            string buscarPorCor = cor.ToLower();
-
             //LINQ sendo utilizado para contar os elementos de acordo com a busca - COUNT
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca de ano  
@@ -175,7 +163,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //First para buscar somente o primeiro e unico elemento
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido do objeto carro
-            Carro carroParaRemover = listaDeCarro.Where(carros => carros.chassi.Equals(carro.chassi) && carros.marca.Equals(carro.marca) && carros.modelo.Equals(carro.modelo) &&
+            var carroParaRemover = listaDeCarro.Where(carros => carros.chassi.Equals(carro.chassi) && carros.marca.Equals(carro.marca) && carros.modelo.Equals(carro.modelo) &&
                       carros.cor.Equals(carro.cor) && carros.ano.Equals(carro.ano) && carros.valor.Equals(carro.valor)).First();
             //remove o carro na lista
             listaDeCarro.Remove(carroParaRemover);
@@ -187,17 +175,12 @@ namespace Cappta.LojaDeCarro.Estoque
         //faz a busca no estoque de carros de acordo com a marca que foi inputada pelo vendedor 
         public List<Carro> PesquisarPelaMarcaDeCarros(string marca)
         {
-          
-            //converter a busca da marca para minusculo porque os dados inseridos são minusculos
-            string buscarPorMarca = marca.ToLower();
-
             //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todas as marcas de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido da marca do carro
-
-            List<Carro> listaDeCarroDaBuscaPorMarca = listaDeCarro.FindAll(carro => carro.marca.Equals(buscarPorMarca));
+            List<Carro> listaDeCarroDaBuscaPorMarca = listaDeCarro.FindAll(carro => carro.marca.Equals(marca));
 
             return listaDeCarroDaBuscaPorMarca;
         }
@@ -205,15 +188,12 @@ namespace Cappta.LojaDeCarro.Estoque
         //faz a busca no estoque de carros de acordo com o modelo que foi inputado pelo vendedor 
         public List<Carro> PesquisarPeloModeloDeCarros(string modelo)
         {
-            //converter a busca do modelo para minusculo porque os dados inseridos são minusculos
-            string buscarPorModelo = modelo.ToLower();
-
             //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todos os modelos de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido do modelo do carro
-            List<Carro> listaDeCarroDaBuscaPorModelo = listaDeCarro.FindAll(carro => carro.modelo.Equals(buscarPorModelo));
+            List<Carro> listaDeCarroDaBuscaPorModelo = listaDeCarro.FindAll(carro => carro.modelo.Equals(modelo));
 
             return listaDeCarroDaBuscaPorModelo;
         }
@@ -221,15 +201,12 @@ namespace Cappta.LojaDeCarro.Estoque
         //faz a busca no estoque de carros de acordo com a cor que foi inputado pelo vendedor 
         public List<Carro> PesquisarPelaCorDeCarros(string cor)
         {
-            //converter a busca da cor para minusculo porque os dados inseridos são minusculos
-            string buscarPorCor = cor.ToLower();
-
             //procura no estoque os carros que possui o critério de busca inputada pelo vendedor 
             //utiliza o metodo o Collection FindAll que procura todas as cores de carro de acordo com o critério de busca
             //armazenar todos os resultados em uma lista
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido da cor de carros
-            List<Carro> listaDeCarroPelaCor = listaDeCarro.FindAll(carro => carro.cor.Equals(buscarPorCor));
+            List<Carro> listaDeCarroPelaCor = listaDeCarro.FindAll(carro => carro.cor.Equals(cor));
 
             return listaDeCarroPelaCor;
         }

@@ -2,7 +2,7 @@
 using Cappta.LojaDeCarro.Pessoas;
 using Cappta.LojaDeCarro.Venda;
 using System;
-using System.Collections.Generic;
+
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -14,13 +14,11 @@ namespace WindowsFormsApp2
         public Form1()
         {
             InitializeComponent();
-
-          
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,14 +27,14 @@ namespace WindowsFormsApp2
         }
 
 
-    
         private void RegistrarVenda_Click(object sender, EventArgs e)
         {
             try
-            { 
+            { //Vendedor é um objeto porque representa um vendedor da vida real. 
+              //Neste sistema, é o vendedor da concessionária de carros.
                 Vendedor vendedor = new Vendedor(vendedorNomeVenda.Text);
 
-                
+                //Cliente é um objeto porque representa um cliente da concessionária.  
                 Cliente cliente = new Cliente(rgClienteVenda.Text, nomeClienteVenda.Text);
 
                 int anoCarro;
@@ -58,12 +56,13 @@ namespace WindowsFormsApp2
                 {
                     throw new FormatException("valor invalido");
                 }
-         
+
+                //Carro é um objeto porque representa um carro. 
                 Carro carro = new Carro(chassiCarroVenda.Text, marcaCarroVenda.Text, modeloCarroVenda.Text, corCarroVenda.Text, anoCarro, valorCarro);
+
 
                 //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
-                //Para registrar uma venda, é necessário inserir os dados do cliente, nome e carro. 
                 string confirmacaoDeVenda = controleDeVendas.VerificarDadosParaEfetuarVenda(vendedor, cliente, carro);
                 MessageBox.Show(confirmacaoDeVenda);
             }
@@ -82,19 +81,21 @@ namespace WindowsFormsApp2
 
         }
 
-     
+       
+
         private void pesquisarVenda_Click(object sender, EventArgs e)
         {
          
+                //o objeto controle de vendas é responsável por adicionar ou remover vendas.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
 
-                List<Venda> listaDeVendas = controleDeVendas.BuscarPorDataOuHora(dataOuHoraPesquisa.Text);
+                var listaDeVendas = controleDeVendas.BuscarPorDataOuHora(dataOuHoraPesquisa.Text);
 
                 //então afirma que que dataSource é nulo
-                dataGridVendas.DataSource = null;
+                this.dataGridVendas.DataSource = null;
 
                 //limpar todas as linhas do dataGridView, 
-                dataGridVendas.Rows.Clear();
+                this.dataGridVendas.Rows.Clear();
 
                 //coluna do data grid view
                 //cria um array para colunas
@@ -128,16 +129,16 @@ namespace WindowsFormsApp2
         private void relatorioDeVendas_Click(object sender, EventArgs e)
         {
             //então afirma que que dataSource é nulo
-            dataGridVendas.DataSource = null;
+            this.dataGridVendas.DataSource = null;
 
             //então já que o dataGridVendas é nulo
             //limpar todas as linhas do dataGridView, 
-            dataGridVendas.Rows.Clear();
+            this.dataGridVendas.Rows.Clear();
 
             //o objeto controle de vendas é responsável por adicionar ou remover vendas.
             ControleDeVendas controleDeVendas = new ControleDeVendas();
 
-            List<Venda> listaDeVendas = controleDeVendas.listaDeVenda;
+            var listaDeVendas = controleDeVendas.listaDeVenda;
 
             //coluna do data grid view
             dataGridVendas.ColumnCount = 11;
@@ -171,23 +172,23 @@ namespace WindowsFormsApp2
 
         private void click_relatorioDeCarros_Click(object sender, EventArgs e)
         {
-           
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> listaDeCarros = estoque.listaDeCarro;
+            var listaDeCarros = estoque.listaDeCarro;
             gridViewCarros.DataSource = listaDeCarros;
         }
 
         private void marcaVisualizar_Click(object sender, EventArgs e)
         {
-            
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(marcaPesquisar.Text);
+            var resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(marcaPesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPelaMarca;
         }
 
         private void quantidadeMarca_Click(object sender, EventArgs e)
         {
-            
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             int retornar = estoque.QuantidadeDeCarroDeAcordoComAMarca(marcaPesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com a marca é: " + retornar);
@@ -196,15 +197,15 @@ namespace WindowsFormsApp2
 
         private void visualizarModelo_Click(object sender, EventArgs e)
         {
-          
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modeloPesquisar.Text);
+            var resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modeloPesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPeloModelo;
         }
 
         private void quantidadeModelo_Click(object sender, EventArgs e)
         {
-           
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
             int retornar = estoque.QuantidadeDeCarroDeAcordoComOModelo(modeloPesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com o modelo é: " + retornar);
@@ -212,30 +213,34 @@ namespace WindowsFormsApp2
 
         private void visualizarCor_Click(object sender, EventArgs e)
         {
-            
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(corPesquisar.Text);
+            var resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(corPesquisar.Text);
             gridViewCarros.DataSource = resultadoDaBuscaPelaCor;
         }
 
         private void corQuantidade_Click(object sender, EventArgs e)
         {
-           
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
-            int retornar = estoque.QuantidadeDeCarroDeAcordoComACor(corPesquisar.Text);
+            var retornar = estoque.QuantidadeDeCarroDeAcordoComACor(corPesquisar.Text);
             MessageBox.Show("a quantidade de carros de acordo com a cor é: " + retornar);
         }
 
         private void visualizarAno_Click(object sender, EventArgs e)
         {
+
+            //Estoque de carros é um objeto porque controla os carros
             EstoqueDeCarro estoque = new EstoqueDeCarro();
 
             int anoCarro;
             //converte um valor de um txt para um double, e retorna se a operação foi bem-sucedida.
             bool resultadoAnoCarro = int.TryParse(anoPesquisar.Text, out anoCarro);
 
-            List<Carro> resultadoDaBuscaPelaCor = estoque.PesquisarCarrosPorAno(anoCarro);
+
+            var resultadoDaBuscaPelaCor = estoque.PesquisarCarrosPorAno(anoCarro);
             gridViewCarros.DataSource = resultadoDaBuscaPelaCor;
+
 
         }
 
@@ -248,14 +253,15 @@ namespace WindowsFormsApp2
             //converte um valor de um txt para um double, e retorna se a operação foi bem-sucedida.
             bool resultadoAnoCarro = int.TryParse(anoPesquisar.Text, out anoCarro);
 
-            int retornar = estoque.QuantidadeDeCarroDeAcordoComOAno(anoCarro);
+
+            var retornar = estoque.QuantidadeDeCarroDeAcordoComOAno(anoCarro);
             MessageBox.Show("a quantidade de carros de acordo com o ano é: " + retornar);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try {
-                
+                //Cliente é um objeto porque representa um cliente da concessionária.  
                 Cliente cliente = new Cliente(rgClienteCancelar.Text, nomeClienteCancelar.Text);
 
                 int anoCarro;
@@ -278,12 +284,11 @@ namespace WindowsFormsApp2
                     throw new FormatException("valor invalido");
                 }
 
-                
+                //Carro é um objeto porque representa um carro. 
                 Carro carro = new Carro(chassiCarroCancelar.Text, marcaCarroCancelar.Text, modeloCarroCancelar.Text, corCarroCancelar.Text, anoCarro, valorCarro);
 
+                //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
-
-                //para o cancelamento de venda é necessário os dados do cliente e do carro, para fazer a verificação dos dados no sistema
                 string confirmacaoDeCancelamentoDeVenda = controleDeVendas.VerificarDadosParaOCancelamentoDeVenda(cliente, carro);
 
                 MessageBox.Show(confirmacaoDeCancelamentoDeVenda);
@@ -304,214 +309,7 @@ namespace WindowsFormsApp2
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void click_quantidadeTotalDeCarros_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-
-            int quantidadeTotalDeCarros = estoque.QuantidadeTotalDeCarrosNoSistema();
-
-            MessageBox.Show("quantidade total de carros no estoque: "+quantidadeTotalDeCarros);
-        }
-
-        private void PesquisarCarro_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        //pega as celulas do dataGridCarros - pega o click
-        private void dataGridCarros_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string chassiDoCarro = dataGridCarros.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string marca = dataGridCarros.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string modelo = dataGridCarros.Rows[e.RowIndex].Cells[2].Value.ToString();
-            string cor = dataGridCarros.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string ano = dataGridCarros.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string valor = dataGridCarros.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-            chassiCarroVenda.Text = chassiDoCarro;
-            marcaCarroVenda.Text = marca;
-            modeloCarroVenda.Text = modelo;
-            corCarroVenda.Text = cor;
-            anoCarroVenda.Text = ano.ToString();
-            valorCarroVenda.Text = valor.ToString();
-
-           // MessageBox.Show("chassi do carro" +chassiDoCarro);
-        }
-
-       
-
-        private void click_carro_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> listaDeCarros = estoque.listaDeCarro;
-            dataGridCarros.DataSource = listaDeCarros;
-        }
-
-        private void click_marca_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPelaMarca = estoque.PesquisarPelaMarcaDeCarros(marcaVendaSearch.Text);
-            dataGridCarros.DataSource = resultadoDaBuscaPelaMarca;
-        }
-
-        private void click_modelo_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPeloModelo = estoque.PesquisarPeloModeloDeCarros(modeloVendaSearch.Text);
-            dataGridCarros.DataSource = resultadoDaBuscaPeloModelo;
-        }
-
-        private void click_cor_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-            List<Carro> resultadoDaBuscaPelaCor = estoque.PesquisarPelaCorDeCarros(corVendaSearch.Text);
-            dataGridCarros.DataSource = resultadoDaBuscaPelaCor;
-        }
-
-        private void click_ano_Click(object sender, EventArgs e)
-        {
-            EstoqueDeCarro estoque = new EstoqueDeCarro();
-
-            int anoCarro;
-            //converte um valor de um txt para um double, e retorna se a operação foi bem-sucedida.
-            bool resultadoAnoCarro = int.TryParse(anoVendaSearch.Text, out anoCarro);
-
-            List<Carro> resultadoDaBuscaPelaCor = estoque.PesquisarCarrosPorAno(anoCarro);
-            dataGridCarros.DataSource = resultadoDaBuscaPelaCor;
-        }
-
-        private void click_vendas_Click(object sender, EventArgs e)
-        {
-            //então afirma que que dataSource é nulo
-            dataGridCancelamento.DataSource = null;
-
-            //então já que o dataGridVendas é nulo
-            //limpar todas as linhas do dataGridView, 
-            dataGridCancelamento.Rows.Clear();
-
-            //o objeto controle de vendas é responsável por adicionar ou remover vendas.
-            ControleDeVendas controleDeVendas = new ControleDeVendas();
-
-            List<Venda> listaDeVendas = controleDeVendas.listaDeVenda;
-
-            //coluna do data grid view
-            dataGridCancelamento.ColumnCount = 8;
-           
-            dataGridCancelamento.Columns[0].Name = "cpf do cliente";
-            dataGridCancelamento.Columns[1].Name = "nome do cliente";
-            dataGridCancelamento.Columns[2].Name = "chassi do carro";
-            dataGridCancelamento.Columns[3].Name = "marca do carro";
-            dataGridCancelamento.Columns[4].Name = "modelo do carro";
-            dataGridCancelamento.Columns[5].Name = "cor do carro";
-            dataGridCancelamento.Columns[6].Name = "ano do carro";
-            dataGridCancelamento.Columns[7].Name = "valor do carro";
-
-            //escrever cada valor em uma string e passar a string para cada linha do dataGridView
-            for (int i = 0; i < listaDeVendas.Count; i++)
-            {
-                //cria um array de string e armazena os dados da lista
-                string[] row = new string[] {
-                               listaDeVendas[i].cliente.rg,listaDeVendas[i].cliente.nome,
-                               listaDeVendas[i].veiculo.chassi,listaDeVendas[i].veiculo.marca,listaDeVendas[i].veiculo.modelo,listaDeVendas[i].veiculo.cor,
-                                listaDeVendas[i].veiculo.ano.ToString(),listaDeVendas[i].veiculo.valor.ToString()};
-                //escrever em cada linha do gridView
-                dataGridCancelamento.Rows.Add(row);
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("cl");
-        }
-
-        private void click_buscar_Click(object sender, EventArgs e)
-        {
-           // string cpf = cpfCancelar.Text;
-            ControleDeVendas controleDeVendas = new ControleDeVendas();
-            List<Venda> resultadoDaBuscaPeloCpf = controleDeVendas.BuscarPorRg(cpfCancelar.Text);
-            //então afirma que que dataSource é nulo
-            dataGridCancelamento.DataSource = null;
-
-            //então já que o dataGridVendas é nulo
-            //limpar todas as linhas do dataGridView, 
-            dataGridCancelamento.Rows.Clear();
-
-            //coluna do data grid view
-            dataGridCancelamento.ColumnCount = 8;
-
-            dataGridCancelamento.Columns[0].Name = "cpf do cliente";
-            dataGridCancelamento.Columns[1].Name = "nome do cliente";
-            dataGridCancelamento.Columns[2].Name = "chassi do carro";
-            dataGridCancelamento.Columns[3].Name = "marca do carro";
-            dataGridCancelamento.Columns[4].Name = "modelo do carro";
-            dataGridCancelamento.Columns[5].Name = "cor do carro";
-            dataGridCancelamento.Columns[6].Name = "ano do carro";
-            dataGridCancelamento.Columns[7].Name = "valor do carro";
-
-            //escrever cada valor em uma string e passar a string para cada linha do dataGridView
-            for (int i = 0; i < resultadoDaBuscaPeloCpf.Count; i++)
-            {
-                //cria um array de string e armazena os dados da lista
-                string[] row = new string[] {
-                               resultadoDaBuscaPeloCpf[i].cliente.rg,resultadoDaBuscaPeloCpf[i].cliente.nome,
-                               resultadoDaBuscaPeloCpf[i].veiculo.chassi,resultadoDaBuscaPeloCpf[i].veiculo.marca,resultadoDaBuscaPeloCpf[i].veiculo.modelo,resultadoDaBuscaPeloCpf[i].veiculo.cor,
-                               resultadoDaBuscaPeloCpf[i].veiculo.ano.ToString(),resultadoDaBuscaPeloCpf[i].veiculo.valor.ToString()};
-                //escrever em cada linha do gridView
-                dataGridCancelamento.Rows.Add(row);
-            }
-
-        }
-
-        //MODIFICAR
-        private void dataGridCancelamento_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string rgClienteCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[0].Value.ToString();
-            string nomeClienteCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string marcaCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[2].Value.ToString();
-            string modeloCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string corCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string anoCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[5].Value.ToString();
-            string valorCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[6].Value.ToString();
-
-            rgClienteCancelar.Text= rgClienteCancelando;
-            nomeClienteCancelar.Text = nomeClienteCancelando;
-            marcaCarroCancelar.Text = marcaCarroCancelando;
-           
-           
-        }
-
-        private void rgClienteCancelar_TextChanged(object sender, EventArgs e)
-        {
-           
-           // string marca = dataGridCarros.Rows[e.RowIndex].Cells[1].Value.ToString();
-         //   string modelo = dataGridCarros.Rows[e.RowIndex].Cells[2].Value.ToString();
-        ////    string cor = dataGridCarros.Rows[e.RowIndex].Cells[3].Value.ToString();
-         //   string ano = dataGridCarros.Rows[e.RowIndex].Cells[4].Value.ToString();
-          //  string valor = dataGridCarros.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-         //   chassiCarroVenda.Text = chassiDoCarro;
-        //    marcaCarroVenda.Text = marca;
-         //   modeloCarroVenda.Text = modelo;
-         //   corCarroVenda.Text = cor;
-          //  anoCarroVenda.Text = ano.ToString();
-          //  valorCarroVenda.Text = valor.ToString();
-        }
     }
 }
 
