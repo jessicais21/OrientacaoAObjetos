@@ -10,25 +10,11 @@ namespace WindowsFormsApp2
     public partial class Form1 : Form
     {
 
-
         public Form1()
         {
             InitializeComponent();
-
-          
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+ 
     
         private void RegistrarVenda_Click(object sender, EventArgs e)
         {
@@ -64,7 +50,7 @@ namespace WindowsFormsApp2
                 //Controle de vendas é um objeto porque representa operações de venda como adicionar e cancelar venda.
                 ControleDeVendas controleDeVendas = new ControleDeVendas();
                 //Para registrar uma venda, é necessário inserir os dados do cliente, nome e carro. 
-                string confirmacaoDeVenda = controleDeVendas.VerificarDadosParaEfetuarVenda(vendedor, cliente, carro);
+                string confirmacaoDeVenda = controleDeVendas.EfetuarVenda(vendedor, cliente, carro);
                 MessageBox.Show(confirmacaoDeVenda);
             }
 
@@ -85,44 +71,45 @@ namespace WindowsFormsApp2
      
         private void pesquisarVenda_Click(object sender, EventArgs e)
         {
-         
-                ControleDeVendas controleDeVendas = new ControleDeVendas();
 
-                List<Venda> listaDeVendas = controleDeVendas.BuscarPorDataOuHora(dataOuHoraPesquisa.Text);
+            //então afirma que que dataSource é nulo
+            dataGridVendas.DataSource = null;
 
-                //então afirma que que dataSource é nulo
-                dataGridVendas.DataSource = null;
+            //então já que o dataGridVendas é nulo
+            //limpar todas as linhas do dataGridView, 
+            dataGridVendas.Rows.Clear();
 
-                //limpar todas as linhas do dataGridView, 
-                dataGridVendas.Rows.Clear();
+            ControleDeVendas controleDeVendas = new ControleDeVendas();
+            List <Venda> listaDeVendas = controleDeVendas.BuscarNoIntervaloDeData(dataInicio.Text, dataFim.Text);
 
-                //coluna do data grid view
-                //cria um array para colunas
-                dataGridVendas.ColumnCount = 11;
-                dataGridVendas.Columns[0].Name = "Numero";
-                dataGridVendas.Columns[1].Name = "Data e hora";
-                dataGridVendas.Columns[2].Name = "vendedor";
-                dataGridVendas.Columns[3].Name = "cpf do cliente";
-                dataGridVendas.Columns[4].Name = "nome do cliente";
-                dataGridVendas.Columns[5].Name = "chassi do carro";
-                dataGridVendas.Columns[6].Name = "marca do carro";
-                dataGridVendas.Columns[7].Name = "modelo do carro";
-                dataGridVendas.Columns[8].Name = "cor do carro";
-                dataGridVendas.Columns[9].Name = "ano do carro";
-                dataGridVendas.Columns[10].Name = "valor do carro";
+            //coluna do data grid view
+            dataGridVendas.ColumnCount = 11;
+            dataGridVendas.Columns[0].Name = "Numero";
+            dataGridVendas.Columns[0].Width = 50;
+            dataGridVendas.Columns[1].Name = "Data e hora";
+            dataGridVendas.Columns[1].Width = 120;
+            dataGridVendas.Columns[2].Name = "vendedor";
+            dataGridVendas.Columns[3].Name = "cpf do cliente";
+            dataGridVendas.Columns[4].Name = "nome do cliente";
+            dataGridVendas.Columns[5].Name = "chassi do carro";
+            dataGridVendas.Columns[6].Name = "marca do carro";
+            dataGridVendas.Columns[7].Name = "modelo do carro";
+            dataGridVendas.Columns[8].Name = "cor do carro";
+            dataGridVendas.Columns[9].Name = "ano do carro";
+            dataGridVendas.Columns[10].Name = "valor do carro";
 
-                for (int i = 0; i < listaDeVendas.Count; i++)
-                {
-                    //cria um array de strings para aparecer no gridView
-                    string[] row = new string[] {listaDeVendas[i].numeroDaVenda.ToString(),
+            //escrever cada valor em uma string e passar a string para cada linha do dataGridView
+            for (int i = 0; i < listaDeVendas.Count; i++)
+            {
+                //cria um array de string e armazena os dados da lista
+                string[] row = new string[] {listaDeVendas[i].numeroDaVenda.ToString(),
                                listaDeVendas[i].dataEHorasDaVenda.ToString(),listaDeVendas[i].vendedor.nome,
                                listaDeVendas[i].cliente.rg,listaDeVendas[i].cliente.nome,
                                listaDeVendas[i].veiculo.chassi,listaDeVendas[i].veiculo.marca,listaDeVendas[i].veiculo.modelo,listaDeVendas[i].veiculo.cor,
                                 listaDeVendas[i].veiculo.ano.ToString(),listaDeVendas[i].veiculo.valor.ToString()};
-                    //escrever em cada linha
-                    dataGridVendas.Rows.Add(row);
-                }
-
+                //escrever em cada linha do gridView
+                dataGridVendas.Rows.Add(row);
+            }
         }
 
         private void relatorioDeVendas_Click(object sender, EventArgs e)
@@ -304,10 +291,7 @@ namespace WindowsFormsApp2
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void click_quantidadeTotalDeCarros_Click(object sender, EventArgs e)
         {
@@ -318,23 +302,10 @@ namespace WindowsFormsApp2
             MessageBox.Show("quantidade total de carros no estoque: "+quantidadeTotalDeCarros);
         }
 
-        private void PesquisarCarro_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
 
-        //pega as celulas do dataGridCarros - pega o click
+        //pega as celulas do GridView e passa para o Text
         private void dataGridCarros_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string chassiDoCarro = dataGridCarros.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -351,7 +322,6 @@ namespace WindowsFormsApp2
             anoCarroVenda.Text = ano.ToString();
             valorCarroVenda.Text = valor.ToString();
 
-           // MessageBox.Show("chassi do carro" +chassiDoCarro);
         }
 
        
@@ -435,14 +405,11 @@ namespace WindowsFormsApp2
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("cl");
-        }
+        
 
         private void click_buscar_Click(object sender, EventArgs e)
         {
-           // string cpf = cpfCancelar.Text;
+          
             ControleDeVendas controleDeVendas = new ControleDeVendas();
             List<Venda> resultadoDaBuscaPeloCpf = controleDeVendas.BuscarPorRg(cpfCancelar.Text);
             //então afirma que que dataSource é nulo
@@ -477,41 +444,31 @@ namespace WindowsFormsApp2
             }
 
         }
-
-        //MODIFICAR
+        
+        //método criado para ler os dados do gridView e colocar no text 
         private void dataGridCancelamento_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             string rgClienteCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[0].Value.ToString();
             string nomeClienteCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[1].Value.ToString();
-            string marcaCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[2].Value.ToString();
-            string modeloCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[3].Value.ToString();
-            string corCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[4].Value.ToString();
-            string anoCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[5].Value.ToString();
-            string valorCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[6].Value.ToString();
+            string chassiCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[2].Value.ToString();
+            string marcaCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[3].Value.ToString();
+            string modeloCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[4].Value.ToString();
+            string corCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[5].Value.ToString();
+            string anoCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[6].Value.ToString();
+            string valorCarroCancelando = dataGridCancelamento.Rows[e.RowIndex].Cells[7].Value.ToString();
 
             rgClienteCancelar.Text= rgClienteCancelando;
             nomeClienteCancelar.Text = nomeClienteCancelando;
+            chassiCarroCancelar.Text = chassiCarroCancelando;
             marcaCarroCancelar.Text = marcaCarroCancelando;
-           
+            modeloCarroCancelar.Text = modeloCarroCancelando;
+            corCarroCancelar.Text = corCarroCancelando;
+            anoCarroCancelar.Text = anoCarroCancelando;
+            valorCarroCancelar.Text = valorCarroCancelando;
            
         }
 
-        private void rgClienteCancelar_TextChanged(object sender, EventArgs e)
-        {
-           
-           // string marca = dataGridCarros.Rows[e.RowIndex].Cells[1].Value.ToString();
-         //   string modelo = dataGridCarros.Rows[e.RowIndex].Cells[2].Value.ToString();
-        ////    string cor = dataGridCarros.Rows[e.RowIndex].Cells[3].Value.ToString();
-         //   string ano = dataGridCarros.Rows[e.RowIndex].Cells[4].Value.ToString();
-          //  string valor = dataGridCarros.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-         //   chassiCarroVenda.Text = chassiDoCarro;
-        //    marcaCarroVenda.Text = marca;
-         //   modeloCarroVenda.Text = modelo;
-         //   corCarroVenda.Text = cor;
-          //  anoCarroVenda.Text = ano.ToString();
-          //  valorCarroVenda.Text = valor.ToString();
-        }
+      
     }
 }
 

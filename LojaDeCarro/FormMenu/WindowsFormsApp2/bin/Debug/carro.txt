@@ -1,4 +1,4 @@
-10,ford,fiesta,preto,2016,3234
 32,fiat,strada,cinza,2017,60000
 200,fiat,palio,preto,2013,1000
 68,fiat,uno,azul,2012,3500
+300,fiat,palio,preto,2013,1000

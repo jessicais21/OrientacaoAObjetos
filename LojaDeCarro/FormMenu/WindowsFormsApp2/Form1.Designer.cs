@@ -32,9 +32,8 @@
             this.relatorioDeVendas = new System.Windows.Forms.Button();
             this.dataGridVendas = new System.Windows.Forms.DataGridView();
             this.pesquisarVenda = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.dataOuHoraPesquisa = new System.Windows.Forms.TextBox();
+            this.dataInicio = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.click_ano = new System.Windows.Forms.Button();
             this.click_cor = new System.Windows.Forms.Button();
@@ -95,6 +94,7 @@
             this.gridViewCarros = new System.Windows.Forms.DataGridView();
             this.click_relatorioDeCarros = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.click_buscar = new System.Windows.Forms.Button();
             this.click_cpf = new System.Windows.Forms.Label();
             this.cpfCancelar = new System.Windows.Forms.TextBox();
             this.click_vendas = new System.Windows.Forms.Button();
@@ -118,7 +118,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.click_buscar = new System.Windows.Forms.Button();
+            this.dataFim = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVendas)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -132,12 +134,14 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label32);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.dataFim);
             this.tabPage3.Controls.Add(this.relatorioDeVendas);
             this.tabPage3.Controls.Add(this.dataGridVendas);
             this.tabPage3.Controls.Add(this.pesquisarVenda);
-            this.tabPage3.Controls.Add(this.label14);
             this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.dataOuHoraPesquisa);
+            this.tabPage3.Controls.Add(this.dataInicio);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -145,7 +149,7 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "pesquisar venda";
             this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+          
             // 
             // relatorioDeVendas
             // 
@@ -168,7 +172,7 @@
             // 
             // pesquisarVenda
             // 
-            this.pesquisarVenda.Location = new System.Drawing.Point(492, 83);
+            this.pesquisarVenda.Location = new System.Drawing.Point(515, 98);
             this.pesquisarVenda.Name = "pesquisarVenda";
             this.pesquisarVenda.Size = new System.Drawing.Size(75, 23);
             this.pesquisarVenda.TabIndex = 4;
@@ -176,30 +180,21 @@
             this.pesquisarVenda.UseVisualStyleBackColor = true;
             this.pesquisarVenda.Click += new System.EventHandler(this.pesquisarVenda_Click);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(353, 51);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(87, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "../../..  OU  ..:..:..";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(351, 20);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(89, 13);
+            this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 2;
-            this.label13.Text = "DATA OU HORA";
+            this.label13.Text = "DATA";
             // 
-            // dataOuHoraPesquisa
+            // dataInicio
             // 
-            this.dataOuHoraPesquisa.Location = new System.Drawing.Point(356, 86);
-            this.dataOuHoraPesquisa.Name = "dataOuHoraPesquisa";
-            this.dataOuHoraPesquisa.Size = new System.Drawing.Size(100, 20);
-            this.dataOuHoraPesquisa.TabIndex = 1;
+            this.dataInicio.Location = new System.Drawing.Point(303, 98);
+            this.dataInicio.Name = "dataInicio";
+            this.dataInicio.Size = new System.Drawing.Size(100, 20);
+            this.dataInicio.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -247,7 +242,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cadastrar venda";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+          
             // 
             // click_ano
             // 
@@ -603,7 +598,7 @@
             this.PesquisarCarro.TabIndex = 4;
             this.PesquisarCarro.Text = "Pesquisar carro";
             this.PesquisarCarro.UseVisualStyleBackColor = true;
-            this.PesquisarCarro.Click += new System.EventHandler(this.PesquisarCarro_Click);
+        
             // 
             // click_quantidadeTotalDeCarros
             // 
@@ -810,7 +805,17 @@
             this.tabPage2.TabIndex = 5;
             this.tabPage2.Text = "Cancelamento de venda";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+           
+            // 
+            // click_buscar
+            // 
+            this.click_buscar.Location = new System.Drawing.Point(510, 112);
+            this.click_buscar.Name = "click_buscar";
+            this.click_buscar.Size = new System.Drawing.Size(75, 23);
+            this.click_buscar.TabIndex = 24;
+            this.click_buscar.Text = "buscar";
+            this.click_buscar.UseVisualStyleBackColor = true;
+            this.click_buscar.Click += new System.EventHandler(this.click_buscar_Click);
             // 
             // click_cpf
             // 
@@ -903,7 +908,7 @@
             this.rgClienteCancelar.Name = "rgClienteCancelar";
             this.rgClienteCancelar.Size = new System.Drawing.Size(100, 20);
             this.rgClienteCancelar.TabIndex = 11;
-            this.rgClienteCancelar.TextChanged += new System.EventHandler(this.rgClienteCancelar_TextChanged);
+           
             // 
             // label28
             // 
@@ -1005,15 +1010,30 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // click_buscar
+            // dataFim
             // 
-            this.click_buscar.Location = new System.Drawing.Point(510, 112);
-            this.click_buscar.Name = "click_buscar";
-            this.click_buscar.Size = new System.Drawing.Size(75, 23);
-            this.click_buscar.TabIndex = 24;
-            this.click_buscar.Text = "buscar";
-            this.click_buscar.UseVisualStyleBackColor = true;
-            this.click_buscar.Click += new System.EventHandler(this.click_buscar_Click);
+            this.dataFim.Location = new System.Drawing.Point(409, 98);
+            this.dataFim.Name = "dataFim";
+            this.dataFim.Size = new System.Drawing.Size(100, 20);
+            this.dataFim.TabIndex = 7;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(303, 79);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "inicio";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(409, 79);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(20, 13);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "fim";
             // 
             // Form1
             // 
@@ -1023,7 +1043,7 @@
             this.Controls.Add(this.CadastrarVenda);
             this.Name = "Form1";
             this.Text = "VendeBem - Sistema de vendas";
-            this.Load += new System.EventHandler(this.Form1_Load);
+          
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridVendas)).EndInit();
@@ -1067,9 +1087,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox dataOuHoraPesquisa;
+        private System.Windows.Forms.TextBox dataInicio;
         private System.Windows.Forms.Button pesquisarVenda;
         private System.Windows.Forms.Button RegistrarVenda;
         private System.Windows.Forms.DataGridView dataGridVendas;
@@ -1133,6 +1152,9 @@
         private System.Windows.Forms.Button click_vendas;
         private System.Windows.Forms.DataGridView dataGridCancelamento;
         private System.Windows.Forms.Button click_buscar;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox dataFim;
     }
 }
 

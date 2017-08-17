@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using Cappta.LojaDeCarro.Pessoas;
-
+using System.Windows.Forms;
 using Cappta.LojaDeCarro.Estoque;
 
 using System.Linq;
@@ -67,16 +67,16 @@ namespace Cappta.LojaDeCarro.Venda
                     int anoDoCarro = Int32.Parse(quebra[9]);
                     double valorDoCarro = Convert.ToDouble(quebra[10]);
 
-                       //cria o objeto vendedor com as características, porque representa um vendedor da vida real
+                      
                         Vendedor vendedor = new Vendedor(nomeDoVendedor);
 
-                        //cria o objeto cliente com as características, representa um cliente na vida real
+                     
                         Cliente cliente = new Cliente(rg, nomeDoCliente);
 
-                        //cria o objeto carro com as características, porque representa um carro na vida real
+                       
                         Carro carro = new Carro(chassi, marcaDoCarro, modeloDoCarro, cor, anoDoCarro, valorDoCarro);
 
-                        //cria o objeto venda com as características que utiliza os objetos vendedor, carro e cliente
+                      
                         Venda venda = new Venda(identificadorDaVenda, dataDaVenda, vendedor, cliente, carro);
 
                         listaDeVenda.Add(venda);
@@ -118,7 +118,7 @@ namespace Cappta.LojaDeCarro.Venda
         }
 
         //verificar dados para efetuar a venda da venda
-        public string VerificarDadosParaEfetuarVenda (Vendedor vendedor, Cliente cliente, Carro carro)
+        public string EfetuarVenda (Vendedor vendedor, Cliente cliente, Carro carro)
         {
             string retornar = "";  
             //cria do objeto estoque de carro, responsável por fazer o controle de carros
@@ -133,7 +133,7 @@ namespace Cappta.LojaDeCarro.Venda
                 estoque.RemoverCarros(carro);
                 //gera o numero identificador para criação da venda
                 int Numeroidentificador = GerarIdentificadorDaVenda();
-                //representa o objeto da vida real venda
+                
                
                     Venda venda = new Venda(Numeroidentificador, localDate, vendedor, cliente, carro);
                     AdicionarVendas(venda);
@@ -175,11 +175,7 @@ namespace Cappta.LojaDeCarro.Venda
 
             //método que verifica na lista de vendas e retorna se encontrou a venda, utiliza o método Exists
             //utiliza a função anônima para comparar cada venda pertencente a lista de vendas de acordo com o critério de busca recebido do objeto carro e cliente
-            bool verificarVenda = listaDeVenda.Exists(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome)
-                    && venda.veiculo.chassi.Equals(carro.chassi) &&
-                    venda.veiculo.marca.Equals(carro.marca) && venda.veiculo.modelo.Equals(carro.modelo) &&
-                    venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
-                    venda.veiculo.valor.Equals(carro.valor));
+            bool verificarVenda = listaDeVenda.Exists(venda => venda.cliente.rg.Equals(cliente.rg)  && venda.veiculo.chassi.Equals(carro.chassi));
 
 
             if (verificarVenda)
@@ -210,11 +206,8 @@ namespace Cappta.LojaDeCarro.Venda
             //First para buscar somente o primeiro e unico elemento
             //utiliza a função anônima para comparar cada carro pertencente a lista de vendas 
             // de acordo com o critério de busca recebido do objeto vendas
-            Venda removerAVenda = listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) && venda.cliente.nome.Equals(cliente.nome) &&
-                    venda.veiculo.chassi.Equals(carro.chassi) &&
-                    venda.veiculo.marca.Equals(carro.marca) && venda.veiculo.modelo.Equals(carro.modelo) &&
-                    venda.veiculo.cor.Equals(carro.cor) && venda.veiculo.ano.Equals(carro.ano) &&
-                    venda.veiculo.valor.Equals(carro.valor)).First();
+            Venda removerAVenda = listaDeVenda.Where(venda => venda.cliente.rg.Equals(cliente.rg) &&
+                    venda.veiculo.chassi.Equals(carro.chassi)).First();
 
             //remove uma venda na lista de vendas
             listaDeVenda.Remove(removerAVenda);
@@ -224,26 +217,41 @@ namespace Cappta.LojaDeCarro.Venda
 
         }
 
-        //faz a busca da venda de acordo com a data ou hora que foi inputado pelo vendedor
-        public List<Venda> BuscarPorDataOuHora(string dataOuHora)
-        {
-            //procura na lista de vendas que possui o critério de busca inputada pelo vendedor 
-            //converte o atributo data para string e pergunta se nessa string contem a data buscada e armazena em uma lista
-            //armazena todos os elementos da lista de busca de venda baseado na busca por data ou hora através do FindAll
-            //armazenar todos os resultados em uma lista
-            //utiliza a função anônima para comparar cada venda pertencente a lista de vendas 
-            // de acordo com o critério de busca recebido por data ou hora
-       
-                List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.dataEHorasDaVenda.ToString().Contains(dataOuHora));
-                return listaDeBuscaDeVendas;
-      
-        }
+        
 
         public List<Venda> BuscarPorRg(string Rg)
         {
+            //procura na lista de vendas que possui o critério de busca inputada pelo vendedor 
+            //converte o atributo data para string e pergunta se nessa string contem a data buscada e armazena em uma lista
+            //armazena todos os elementos da lista de busca de venda baseado na busca por rg através do FindAll
+            //armazenar todos os resultados em uma lista
+            //utiliza a função anônima para comparar cada venda pertencente a lista de vendas 
+            // de acordo com o critério de busca recebido pelo rg
             List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(vendas => vendas.cliente.rg.Equals(Rg));
             return listaDeBuscaDeVendas;
         }
+
+
+        public List<Venda> BuscarNoIntervaloDeData(string dataInicio, string dataFim)
+        {
+            //converte string para data para o inicio da busca
+            DateTime dataInicioBusca = DateTime.Parse(dataInicio);
+           
+            //hora sendo criada por Default : 00:00:00, a data final tem que pegar ate o ultimo minuto do dia
+            string horaFinalDaDataDaBusca = "23:59:59";
+
+            //concatena a string
+            string concatenandoDataFim = dataFim+" "+horaFinalDaDataDaBusca;
+           
+            //converter para o dateTime para a realização de busca
+            DateTime dataFimBusca = Convert.ToDateTime(concatenandoDataFim);
+
+            //procura todos da pertencentes a lista do DateTime, e lista todas as vendas de acordo com a data de inicio e fim digitada pelo usuario
+            List<Venda> listaDeBuscaDeVendas = listaDeVenda.FindAll(listasVendas => listasVendas.dataEHorasDaVenda >= dataInicioBusca && listasVendas.dataEHorasDaVenda <= dataFimBusca);
+          
+            return listaDeBuscaDeVendas;
+        }
+
     }
 
 }

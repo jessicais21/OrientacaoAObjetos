@@ -161,8 +161,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //método que verifica na lista de carros e retorna se encontrou o carro, utiliza o método Exists
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido do objeto carro
-            bool verificarCarro = listaDeCarro.Exists(carros => carros.chassi.Equals(carro.chassi) && carros.marca.Equals(carro.marca) && carros.modelo.Equals(carro.modelo) &&
-                                                               carros.cor.Equals(carro.cor) && carros.ano.Equals(carro.ano) && carros.valor.Equals(carro.valor));
+            bool verificarCarro = listaDeCarro.Exists(carros => carros.chassi.Equals(carro.chassi));
 
             return verificarCarro;
         }
@@ -175,8 +174,7 @@ namespace Cappta.LojaDeCarro.Estoque
             //First para buscar somente o primeiro e unico elemento
             //utiliza a função anônima para comparar cada carro pertencente a lista de carros 
             // de acordo com o critério de busca recebido do objeto carro
-            Carro carroParaRemover = listaDeCarro.Where(carros => carros.chassi.Equals(carro.chassi) && carros.marca.Equals(carro.marca) && carros.modelo.Equals(carro.modelo) &&
-                      carros.cor.Equals(carro.cor) && carros.ano.Equals(carro.ano) && carros.valor.Equals(carro.valor)).First();
+            Carro carroParaRemover = listaDeCarro.Where(carros => carros.chassi.Equals(carro.chassi)).First();
             //remove o carro na lista
             listaDeCarro.Remove(carroParaRemover);
             //altera o arquivo de estoque de carros
